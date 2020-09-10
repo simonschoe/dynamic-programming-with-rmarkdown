@@ -1,4 +1,0 @@
-"0","install_version(""dplyr"", version = ""0.8"", repos = ""http://cran.us.r-project.org"")"
-"2","Fehler in install_version(""dplyr"", version = ""0.8"", repos = ""http://cran.us.r-project.org"") : 
-  konnte Funktion ""install_version"" nicht finden
-"

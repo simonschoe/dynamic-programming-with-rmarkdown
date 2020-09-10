@@ -14,6 +14,7 @@ background-position: 95% 5%
 background-size: 7.5%
 layout: true
 
+
 ---
 
 ##Introduction to RStudio Projects (`.Rproj`)
@@ -37,7 +38,7 @@ RStudio Projects offer you a way to structure your data science project and impr
 ]
 .pull-right[
 ```{r, echo=F, out.height='70%', out.width='70%', fig.align='center'}
-knitr::include_graphics("../img/create-project-1.PNG")
+knitr::include_graphics("./img/create-project-1.PNG")
 ```
 ]
 
@@ -53,7 +54,7 @@ name: create-project
 Here, I am creating a brand new directory, called `01_r_projects` in which I create this presentation:
 
 ```{r, echo=F, out.height='50%', out.width='50%', fig.align='center'}
-knitr::include_graphics("../img/create-project-2.PNG")
+knitr::include_graphics("./img/create-project-2.PNG")
 ```
 
 ???

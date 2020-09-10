@@ -16,7 +16,7 @@ class: middle, center, inverse
 ##The Story So Far: Rscripts (**`.R`**)
 
 ```{r, echo=F, out.height='75%', out.width='75%', fig.align='center'}
-knitr::include_graphics("../img/r-script.PNG")
+knitr::include_graphics("./img/r-script.PNG")
 ```
 
 ???
@@ -221,11 +221,11 @@ Point to the value of cheat sheets!
 **Code Chunks:** Self-contained part of your `R` code for which, upon code evaluation, the output of your code is shown directly below the chunk instead of only in your console or the RStudio Viewer or the Plots pane.
 
 ```{r, echo=F, out.height='70%', out.width='70%', out.extra='style="float:left; padding:10px"'}
-knitr::include_graphics("../img/fibo.PNG")
+knitr::include_graphics("./img/fibo.PNG")
 ```
 <br>
 **Creating code chunks**:  
-Using the *insert* button in the RStudio interface ![](../img/insert.PNG), or via keyboard shortcut: Ctrl + Alt + I
+Using the *insert* button in the RStudio interface ![](./img/insert.PNG), or via keyboard shortcut: Ctrl + Alt + I
 
 *Note: In fact, code chunks even allow you to write and evaluate code in other languages, such as Python, SQL or C++.*
 

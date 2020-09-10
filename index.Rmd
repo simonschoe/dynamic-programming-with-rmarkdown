@@ -97,17 +97,17 @@ You might want the code to run in a couple of month from now when starting your 
 
 ---
 
-```{r child='./slides/01_rstudio_projects.Rmd', eval=T}
+```{r child='./01_rstudio_projects.Rmd', eval=T}
 ```
 
 ---
 
-```{r child='./slides/02_r_notebooks.Rmd', eval=T}
+```{r child='./02_r_notebooks.Rmd', eval=T}
 ```
 
 ---
 
-```{r child='./slides/03_project_environments.Rmd', eval=T}
+```{r child='./03_project_environments.Rmd', eval=T}
 ```
 
 ---
