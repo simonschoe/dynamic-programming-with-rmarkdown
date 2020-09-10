@@ -1,0 +1,142 @@
+---
+title: "Machine Learning in R:<br/>Workshop Series"
+subtitle: "Structuring Data Projects"
+author: "Simon Schölzel"
+institute: "*Research Team Berens*"
+date: "2020-08-20 (updated: `r Sys.Date()`)"
+
+output:
+  xaringan::moon_reader:
+    css: [./custom/xaringan-themer.css, ./custom/custom-theme.css]
+    lib_dir: libs
+    nature:
+      titleSlideClass: [left, middle, inverse]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  #set comment formatting
+  comment = ">",
+  #collapse code and output
+  collapse = F
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#000000",
+  link_color = "#0000EE",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "700b", "400"),
+  code_font_google   = google_font("Fira Mono"),
+  colors = c(
+    red = "#f34213",
+    white = "#FFFFFF"
+  ),
+  code_font_size = "smaller",
+  code_inline_background_color = "#F4F4F4",
+  outfile = "./custom/xaringan-themer.css"
+)
+```
+
+```{r packages, warning=F, message=F, echo=F}
+#install.packages("pacman")
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(showtext, renv)
+pacman::p_load_gh("hadley/emo", "gadenbuie/countdown")
+```
+
+name: agenda
+
+##Agenda
+
+**1. Learning Objectives**
+
+**2. Introduction to RStudio Projects (`.Rproj`)**
+
+**3. R Markdown Documents (`.Rmd`)**
+  1. Document Structure I: Header
+  2. Document Structure II: Text Body
+  3. Document Structure III: Code Chunks & Output (*incl. live demo*)
+  4. Generating High-Quality Reports
+  
+**4. Interactive Data Science Environments**
+  1. Introduction to Computational Notebooks
+  2. R Markdown documents vs. R Notebooks (*incl. live demo*)
+
+**5. `renv`: Project Environments**
+  1. Library Paths
+  2. Features of `renv`
+  3. The `renv` Workflow
+  4. Additional Remarks
+
+???
+comment
+
+---
+
+##Learning Objectives `r emo::ji("idea")`
+
+This workshop should support you in optimizing your overall data science and machine learning workflow by setting up an RStudio project, conducting your analyses in an interactive notebook environment and maintaining local project libraries.
+
+More specifically, after this workshop you should
+- be familiar with features of RStudio projects (`.Rproj`) as well as the differences between absolute and relative directory paths,<br><br>
+- know your way around R Markdown documents (`.Rmd`) and embrace R Notebooks as your primary tool for doing interactive data science and machine learning in `R`,<br><br>
+- see the value in using local project environments to prevent dependency errors, promote collaboration, and ensure reproducibility.
+
+???
+rNotebook: Why bothering: The assignments will be an Rnotebook, and Rmarkdown will be used during the online course.
+
+renv: 
+You might want the code to run in a couple of month from now when starting your master thesis
+
+---
+
+```{r child='./slides/01_rstudio_projects.Rmd', eval=T}
+```
+
+---
+
+```{r child='./slides/02_r_notebooks.Rmd', eval=T}
+```
+
+---
+
+```{r child='./slides/03_project_environments.Rmd', eval=T}
+```
+
+---
+
+layout: true
+
+---
+
+##Additional Resources
+
+**RStudio Support (2020):** Using Projects. URL: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects.
+
+**Wickham, H./Grolemund, G. (2017):** R for Data Science: Visualize, Model, Transform, Tidy, and Import Data. URL:
+https://r4ds.had.co.nz/workflow-projects.html, chapter 8 (Workflow: projects).
+
+___
+
+**RStudio (2020):** Introduction to `Rmarkdown`. URL: https://rmarkdown.rstudio.com/lesson-1.html.
+
+**RStudio (2020):** `Rmarkdown::cheat sheet`. URL: https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf.
+
+**Xie, Y./Allaire, J.J./Grolemund, G. (2020):** R Markdown: The Definitive Guide. URL: https://bookdown.org/yihui/rmarkdown/, chapter 2 (Basics) and 3 (Documents).
+
+___
+
+**Ushey, K. (2020):** `renv`: Project Environments for R. URL: https://kevinushey-2020-rstudio-conf.netlify.app/slides.html#1.
+
+**Ushey, K. (2020):** Introduction to `renv.` URL: https://rstudio.github.io/renv/articles/renv.html.
+
+???
+convert html presentation to pdf:
+pagedown::chrome_print("index.Rmd")

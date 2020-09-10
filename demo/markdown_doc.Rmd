@@ -1,0 +1,68 @@
+---
+title: "Rmarkdown Demo"
+author: Simon Schölzel    
+date: 2020-08-29     
+output:              
+  html_document:     
+    toc: true        
+    toc_float: true  
+    toc_depth: 2
+---
+
+# Text body
+
+You can write plain text,
+in *italics* or in **bold**,
+and use S^uperscript^ or S~ubscript~.
+You can format text as `fancy R code`,
+and even embed LaTeX equations:
+$$
+x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q} 
+$$
+
+
+# You can use headers (H1)
+## You can use headers (H2)
+### You can use headers (H3)
+#### You can use headers (H4)
+##### You can use headers (H5)
+
+
+> You can highlight quotes,
+
+embed [Hyperlink](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf),
+or include images: ![](https://i.pinimg.com/originals/32/49/65/32496554a4f599228677bbf7919024bb.png),
+
+
+- You can create an
+    - unordered list
+        - of items
+
+1. Or even better
+2. an ordered list
+  1. which should
+  2. look familiar!
+  
+  
+And finally, since we are in an academic context you might also want use some footnotes[^1]
+[^1]: Insert footnote
+
+# Code Chunks
+
+```{r fibonacci}
+fib <- function(n) {
+  x <-  numeric(n)
+  x[1:2] <-  c(1,1)
+  for(i in 3:n) {
+    x[i] = x[i-1] + x[i-2]
+  }
+  return(x)
+}
+
+Sys.sleep(5)
+
+fib(10)
+```
+
+We can even run in-line, so-called inline expressions: `r fib(15)`.
+

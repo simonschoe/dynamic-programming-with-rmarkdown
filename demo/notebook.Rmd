@@ -1,0 +1,38 @@
+---
+title: "R Notebook"
+author: Simon Schölzel
+date: 2020-08-30
+output: html_notebook
+---
+
+# Data Load
+
+Load the famous mtcars data provided in the base `R` `datasets` package.
+You can access the data dictionary by running `help(mtcars)`.
+```{r}
+data(mtcars)
+mtcars
+```
+
+# Exploratory Data Analysis
+
+Show all different car models
+```{r}
+rownames(mtcars)
+```
+
+Compute the average miles per gallon (`mpg`)
+```{r}
+mean(mtcars$mpg)
+```
+
+Visualize the distribution of `mpg` vs. `cyl`
+```{r}
+plot(mtcars$cyl, mtcars$mpg)
+```
+
+Try to load data that does not exist
+```{r}
+read.csv("non-existing-data.csv")
+```
+
