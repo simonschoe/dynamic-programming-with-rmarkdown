@@ -135,8 +135,10 @@ ___
 
 **Ushey, K. (2020):** `renv`: Project Environments for R. URL: https://kevinushey-2020-rstudio-conf.netlify.app/slides.html#1.
 
-**Ushey, K. (2020):** Introduction to `renv.` URL: https://rstudio.github.io/renv/articles/renv.html.
+**Ushey, K. (2020):** Introduction to `renv`. URL: https://rstudio.github.io/renv/articles/renv.html.
 
 ???
 convert html presentation to pdf:
-pagedown::chrome_print("index.Rmd")
+
+from online presentation:
+docker run --rm -t -v %cd%/desktop/l09_desktop/workshops/01_structuring_data_projects/slides:/slides astefanutti/decktape https://simonschoe.github.io/Structuring-Data-Projects/#1 index.pdf

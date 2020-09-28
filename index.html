@@ -17,7 +17,7 @@ class: left, middle, inverse, title-slide
 ## Structuring Data Projects
 ### Simon Schölzel
 ### <em>Research Team Berens</em>
-### 2020-08-20 (updated: 2020-09-10)
+### 2020-08-20 (updated: 2020-09-28)
 
 ---
 
@@ -178,7 +178,7 @@ dir(".")
 &gt;  [7] "index.html"                      "index.Rmd"                      
 &gt;  [9] "libs"                            "README.md"                      
 &gt; [11] "renv"                            "renv.lock"                      
-&gt; [13] "structuring_data_projects.Rproj"
+&gt; [13] "slides"                          "structuring_data_projects.Rproj"
 ```
 
 This is basically all the stuff required for rendering this presentation. Put differently: With an `.Rproj`, I organize all the files related to the project in one folder (e.g., script files, data sets, figures, manuscripts, etc.).
@@ -473,7 +473,7 @@ The code is send from the chunk to your console where it is evaluated. The outpu
 ###Live Demo
 
 .center[
-<div class="countdown" id="timer_5f59fd27" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
+<div class="countdown" id="timer_5f71d422" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 ]
@@ -633,7 +633,7 @@ First sentence: you will likely don't see any apparent differences between the t
 ###Live Demo
 
 .center[
-<div class="countdown" id="timer_5f59fd0b" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
+<div class="countdown" id="timer_5f71d339" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 ]
@@ -658,8 +658,8 @@ class: middle, center, inverse
 
 ---
 
-##`renv`: Project Environments
-###Library Paths
+## `renv`: Project Environments
+### Library Paths
 
 **Question:** Where does R store my installed packages respectively loads them from?
 --
@@ -688,8 +688,8 @@ comment
 
 ---
 
-##`renv`: Project Environments
-###Library Paths
+## `renv`: Project Environments
+### Library Paths
 
 By default, this path is accessed each time you run a new `R` session or create a new `.Rproj`. Yet, the required version of a given package may vary across projects (e.g., depending on the project's start date):
 
@@ -704,7 +704,7 @@ comment
 
 ---
 
-##`renv`: Project Environments
+## `renv`: Project Environments
 
 &lt;img src="https://miro.medium.com/max/600/1*EntpL6rY5JThFw6eay6BCA.jpeg" width="80%" height="80%" style="display: block; margin: auto;" /&gt;
 
@@ -720,8 +720,8 @@ layout: true
 
 ---
 
-##`renv`: Project Environments
-###Features of `renv`
+## `renv`: Project Environments
+### Features of `renv`
 
 `R` package for initializing and managing local project environments, i.e. collections of R packages utilized within an *.Rproj*.
 
@@ -742,8 +742,8 @@ comment
 
 ---
 
-##`renv`: Project Environments
-###The `renv` Workflow
+## `renv`: Project Environments
+### The `renv` Workflow
 
 **Step 1:**  
 Set up `renv` by running `renv::init()` to initialize your local environment with a private library of `R` packages specific to your project.
@@ -765,8 +765,8 @@ comment
 
 ---
 
-##`renv`: Project Environments
-###The `renv` Workflow: `renv::init()`
+## `renv`: Project Environments
+### The `renv` Workflow: `renv::init()`
 
 ```
 &gt; install.packages("renv")
@@ -808,8 +808,8 @@ comment
 
 ---
 
-##`renv`: Project Environments
-###The `renv` Workflow: `renv.lock`
+## `renv`: Project Environments
+### The `renv` Workflow: `renv.lock`
 
 The **lockfile** stores all information necessary to re-install the required packages, e.g., when sharing the project with a collaborator, archiving a project or putting code into productive use (*deployment*). Packages can be downloaded from: `CRAN`, `Bioconductor`, `GitHub`, `Gitlab`, `Bitbucket`.
 
@@ -829,8 +829,8 @@ you cultivate on lock-file per project. as soon as you feel you need to require 
 
 ---
 
-##`renv`: Project Environments
-###The `renv` Workflow: `renv/library`
+## `renv`: Project Environments
+### The `renv` Workflow: `renv/library`
 
 `renv` links your project to a **global package cache** where all your downloaded packages are stored by `renv`. You can think of it as a repository that contains all package versions ever installed on your machine.
 
@@ -853,8 +853,8 @@ Picture by [Kevin Ushey](https://kevinushey-2020-rstudio-conf.netlify.app/slides
 
 ---
 
-##`renv`: Project Environments
-###The `renv` Workflow: `renv/library`
+## `renv`: Project Environments
+### The `renv` Workflow: `renv/library`
 
 Finally, if we now check our active library path (`.libPaths()`), we observe a new project-specific path (as well as an additional system library path which you need to consider further at this point).
 
@@ -864,7 +864,7 @@ Finally, if we now check our active library path (`.libPaths()`), we observe a n
 
 ```
 &gt; [1] "C:/Users/s_scho53/Desktop/L09_Desktop/workshops/01_structuring_data_projects/renv/library/R-4.0/x86_64-w64-mingw32"
-&gt; [2] "C:/Users/s_scho53/AppData/Local/Temp/RtmpcXzHU3/renv-system-library"
+&gt; [2] "C:/Users/s_scho53/AppData/Local/Temp/RtmpEtx7z9/renv-system-library"
 ```
 
 ???
@@ -872,8 +872,8 @@ comments
 
 ---
 
-##`renv`: Project Environments
-###The `renv` Workflow: `renv::snapshot()`
+## `renv`: Project Environments
+### The `renv` Workflow: `renv::snapshot()`
 
 After having successfully set up our project-specific library, let's consider the two other main features horses of the `renv` package: `renv::snapshot()` and `renv::restore()`
 
@@ -901,8 +901,8 @@ comment
 
 ---
 
-##`renv`: Project Environments
-###The `renv` Workflow: `renv::restore()`
+## `renv`: Project Environments
+### The `renv` Workflow: `renv::restore()`
 
 After having successfully set up our project-specific library, let's consider the two other main features horses of the `renv` package: `renv::snapshot()` and `renv::restore()`
 
@@ -930,16 +930,14 @@ comment
 
 ---
 
-##`renv`: Project Environments
-###Additional Remarks
+## `renv`: Project Environments
+### Additional Remarks
 
-- A project is always bound to a particular version of `renv`. Updating the current version of the `renv` package should be done using the `renv::upgrade()` command.
---
-&lt;br&gt;&lt;br&gt;
-- When setting up `renv` for an existing project, upon calling `renv::init()` `renv` autonomously crawls all project scripts and searches for packages that are mentioned in your code. For this presentation, I relied on the following packages (note that packages are only identified if explicitly mentioned in the code):
+- A project is always bound to a particular version of `renv`. Updating the current version of the `renv` package should be done using the `renv::upgrade()` command.&lt;br&gt;&lt;br&gt;
+- When setting up `renv` for an existing project, upon calling `renv::init()` `renv` autonomously crawls all project scripts and searches for packages that are mentioned in your code via `renv::dependencies()`. For this presentation, I relied - among others - on the following packages (note that packages are only identified if explicitly mentioned in the code, i.e. by name):
 
 ```r
-head(renv::dependencies(), 3)
+head(renv::dependencies(), 5)
 ```
 
 ```
@@ -947,18 +945,16 @@ head(renv::dependencies(), 3)
 ```
 
 ```
-&gt;                                                                                                 Source
-&gt; 1 C:/Users/s_scho53/Desktop/L09_Desktop/workshops/01_structuring_data_projects/01_rstudio_projects.Rmd
-&gt; 2 C:/Users/s_scho53/Desktop/L09_Desktop/workshops/01_structuring_data_projects/01_rstudio_projects.Rmd
-&gt; 3 C:/Users/s_scho53/Desktop/L09_Desktop/workshops/01_structuring_data_projects/01_rstudio_projects.Rmd
-&gt;     Package Require Version   Dev
-&gt; 1 rmarkdown                 FALSE
-&gt; 2     knitr                 FALSE
-&gt; 3     knitr                 FALSE
+&gt;                                          Source   Package Version
+&gt; 1 C:/Users/s_scho53/.../01_rstudio_projects.Rmd rmarkdown        
+&gt; 2 C:/Users/s_scho53/.../01_rstudio_projects.Rmd     knitr        
+&gt; 3 C:/Users/s_scho53/.../01_rstudio_projects.Rmd     knitr        
+&gt; 4 C:/Users/s_scho53/.../01_rstudio_projects.Rmd     knitr        
+&gt; 5      C:/Users/s_scho53/.../02_r_notebooks.Rmd rmarkdown
 ```
 
 ???
-comment
+Here, only the top 5 entries. `knitr` is three times, according by how often I use the package in my code (here three times for including pictures and gifs in the slides).
 
 
 ---
@@ -986,11 +982,13 @@ ___
 
 **Ushey, K. (2020):** `renv`: Project Environments for R. URL: https://kevinushey-2020-rstudio-conf.netlify.app/slides.html#1.
 
-**Ushey, K. (2020):** Introduction to `renv.` URL: https://rstudio.github.io/renv/articles/renv.html.
+**Ushey, K. (2020):** Introduction to `renv`. URL: https://rstudio.github.io/renv/articles/renv.html.
 
 ???
 convert html presentation to pdf:
-pagedown::chrome_print("index.Rmd")
+
+from online presentation:
+docker run --rm -t -v %cd%/desktop/l09_desktop/workshops/01_structuring_data_projects/slides:/slides astefanutti/decktape https://simonschoe.github.io/Structuring-Data-Projects/#1 index.pdf
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
