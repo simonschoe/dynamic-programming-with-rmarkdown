@@ -5,7 +5,7 @@ output: html_document
 
 class: middle, center, inverse
 
-#Part I:<br><br>Introduction to RStudio Projects
+# Introduction to RStudio Projects
 
 ---
 
@@ -17,7 +17,7 @@ layout: true
 
 ---
 
-##Introduction to RStudio Projects (`.Rproj`)
+## 2 Introduction to RStudio Projects (`.Rproj`)
 
 **What is an RStudio Project?**
 RStudio Projects offer you a way to structure your data science project and improve your overall workflow:
@@ -49,7 +49,7 @@ comment
 
 name: create-project
 
-##Introduction to RStudio Projects (`.Rproj`)
+## 2 Introduction to RStudio Projects (`.Rproj`)
 
 Here, I am creating a brand new directory, called `01_r_projects` in which I create this presentation:
 
@@ -62,7 +62,7 @@ comments
 
 ---
 
-##Introduction to RStudio Projects (`.Rproj`)
+## 2 Introduction to RStudio Projects (`.Rproj`)
 
 **What happens when a new project is created?**
 - RStudio creates a `.Rproj` file within the specified directory. This file contains certain project options and enables to open the *RStudio Project* from your machine's filesystem.
@@ -85,7 +85,7 @@ comments
 
 ---
 
-##Introduction to RStudio Projects (`.Rproj`)
+## 2 Introduction to RStudio Projects (`.Rproj`)
 
 Let's have a look at the project directory of this presentation (maintained as an `.Rproj`):
 ```{r, eval=F}
@@ -107,7 +107,7 @@ comment
 
 ---
 
-##Introduction to RStudio Projects (`.Rproj`)
+## 2 Introduction to RStudio Projects (`.Rproj`)
 
 The dot ( `.` ) is a **relative path** to my project directory. Hence, it refers to:
 ```
@@ -135,7 +135,7 @@ comment
 
 ---
 
-##Introduction to RStudio Projects (`.Rproj`)
+## 2 Introduction to RStudio Projects (`.Rproj`)
 <br>
 ```{r, echo=F, out.height='50%', out.width='50%', fig.align='center'}
 knitr::include_graphics("https://media1.tenor.com/images/f72cb542d6b3e3c3421889e0a3d9628d/tenor.gif")
@@ -146,7 +146,7 @@ comment
 
 ---
 
-##Introduction to RStudio Projects (`.Rproj`)
+## 2 Introduction to RStudio Projects (`.Rproj`)
 
 **Project options:** Access project options within `RStudio` by navigating to *Tools -> Project Options...* .
 

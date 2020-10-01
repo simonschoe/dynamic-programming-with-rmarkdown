@@ -9,12 +9,12 @@ layout: true
 
 class: middle, center, inverse
 
-#Part III:<br><br>Project Environments
+# Project Environments
 
 ---
 
-## `renv`: Project Environments
-### Library Paths
+## 5 `renv`: Project Environments
+### 5.1 Library Paths
 
 **Question:** Where does R store my installed packages respectively loads them from?
 --
@@ -43,8 +43,8 @@ comment
 
 ---
 
-## `renv`: Project Environments
-### Library Paths
+## 5 `renv`: Project Environments
+### 5.1 Library Paths
 
 By default, this path is accessed each time you run a new `R` session or create a new `.Rproj`. Yet, the required version of a given package may vary across projects (e.g., depending on the project's start date):
 
@@ -59,17 +59,6 @@ comment
 
 ---
 
-## `renv`: Project Environments
-
-```{r, echo=F, out.width='80%', out.height='80%', fig.align='center'}
-knitr::include_graphics("https://miro.medium.com/max/600/1*EntpL6rY5JThFw6eay6BCA.jpeg")
-```
-
-???
-image source: "https://miro.medium.com/max/600/1*EntpL6rY5JThFw6eay6BCA.jpeg"
-
----
-
 background-image: url(https://rstudio.github.io/renv/reference/figures/logo.svg)
 background-position: 95% 5%
 background-size: 7.5%
@@ -77,8 +66,8 @@ layout: true
 
 ---
 
-## `renv`: Project Environments
-### Features of `renv`
+## 5 `renv`: Project Environments
+### 5.2 Features of `renv`
 
 `R` package for initializing and managing local project environments, i.e. collections of R packages utilized within an *.Rproj*.
 
@@ -99,8 +88,8 @@ comment
 
 ---
 
-## `renv`: Project Environments
-### The `renv` Workflow
+## 5 `renv`: Project Environments
+### 5.3 The `renv` Workflow
 
 **Step 1:**  
 Set up `renv` by running `renv::init()` to initialize your local environment with a private library of `R` packages specific to your project.
@@ -122,8 +111,8 @@ comment
 
 ---
 
-## `renv`: Project Environments
-### The `renv` Workflow: `renv::init()`
+## 5 `renv`: Project Environments
+### 5.3 The `renv` Workflow: `renv::init()`
 
 ```
 > install.packages("renv")
@@ -147,8 +136,8 @@ comment
 
 ---
 
-## `renv`: Project Environments
-### The `renv` Workflow: `renv.lock`
+## 5 `renv`: Project Environments
+### 5.3 The `renv` Workflow: `renv.lock`
 
 The **lockfile** stores all information necessary to re-install the required packages, e.g., when sharing the project with a collaborator, archiving a project or putting code into productive use (*deployment*). Packages can be downloaded from: `CRAN`, `Bioconductor`, `GitHub`, `Gitlab`, `Bitbucket`.
 
@@ -168,8 +157,8 @@ you cultivate on lock-file per project. as soon as you feel you need to require 
 
 ---
 
-## `renv`: Project Environments
-### The `renv` Workflow: `renv/library`
+## 5 `renv`: Project Environments
+### 5.3 The `renv` Workflow: `renv/library`
 
 `renv` links your project to a **global package cache** where all your downloaded packages are stored by `renv`. You can think of it as a repository that contains all package versions ever installed on your machine.
 
@@ -194,8 +183,8 @@ Picture by [Kevin Ushey](https://kevinushey-2020-rstudio-conf.netlify.app/slides
 
 ---
 
-## `renv`: Project Environments
-### The `renv` Workflow: `renv/library`
+## 5 `renv`: Project Environments
+### 5.3 The `renv` Workflow: `renv/library`
 
 Finally, if we now check our active library path (`.libPaths()`), we observe a new project-specific path (as well as an additional system library path which you need to consider further at this point).
 ```{r}
@@ -207,8 +196,8 @@ comments
 
 ---
 
-## `renv`: Project Environments
-### The `renv` Workflow: `renv::snapshot()`
+## 5 `renv`: Project Environments
+### 5.3 The `renv` Workflow: `renv::snapshot()`
 
 After having successfully set up our project-specific library, let's consider the two other main features horses of the `renv` package: `renv::snapshot()` and `renv::restore()`
 
@@ -235,8 +224,8 @@ comment
 
 ---
 
-## `renv`: Project Environments
-### The `renv` Workflow: `renv::restore()`
+## 5 `renv`: Project Environments
+### 5.3 The `renv` Workflow: `renv::restore()`
 
 After having successfully set up our project-specific library, let's consider the two other main features horses of the `renv` package: `renv::snapshot()` and `renv::restore()`
 
@@ -263,8 +252,8 @@ comment
 
 ---
 
-## `renv`: Project Environments
-### Additional Remarks
+## 5 `renv`: Project Environments
+### 5.4 Additional Remarks
 
 - A project is always bound to a particular version of `renv`. Updating the current version of the `renv` package should be done using the `renv::upgrade()` command.<br><br>
 - When setting up `renv` for an existing project, upon calling `renv::init()` `renv` autonomously crawls all project scripts and searches for packages that are mentioned in your code via `renv::dependencies()`. For this presentation, I relied - among others - on the following packages (note that packages are only identified if explicitly mentioned in the code, i.e. by name):

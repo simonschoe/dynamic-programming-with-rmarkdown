@@ -9,11 +9,11 @@ layout: true
 
 class: middle, center, inverse
 
-#Part II:<br><br>R Markdown Documents and Interactive Data Science Environments
+# R Markdown Documents and Interactive Data Science Environments
 
 ---
 
-##The Story So Far: Rscripts (**`.R`**)
+## 3 The Story So Far: Rscripts (**`.R`**)
 
 ```{r, echo=F, out.height='75%', out.width='75%', fig.align='center'}
 knitr::include_graphics("./img/r-script.PNG")
@@ -31,15 +31,15 @@ layout: true
 
 ---
 
-##R Markdown Documents (`.Rmd`)
+## 3 R Markdown Documents (`.Rmd`)
 
 .pull-left[
-**`Rmarkdown`:**
-- Markdown-based authoring framework for data science.
-- Embed `R` Code and plain text.
-- Generate high-quality reports.
+**`rmarkdown`:**
+- Markdown-based authoring framework for data science
+- Embed `R` Code and plain text
+- Generate high-quality reports
 
-**`Document elements`:**
+**Document elements:**
 - Header
 - Text body
 - Code & output
@@ -59,8 +59,8 @@ comments
 
 ---
 
-##R Markdown Documents (`.Rmd`)
-###The `YAML` Header
+## 3 R Markdown Documents (`.Rmd`)
+### 3.1 The `YAML` Header
 
 The **header** appears at the top of your `.Rmd` document. It contains a bunch of metadata as well as formatting options for your final report. The syntax for the header is based on [YAML](https://en.wikipedia.org/wiki/YAML).
 
@@ -82,8 +82,8 @@ Only a small extract of options you can specify as part of the YAML header.
 
 ---
 
-##R Markdown Documents (`.Rmd`)
-###The Text Body
+## 3 R Markdown Documents (`.Rmd`)
+### 3.2 The Text Body
 
 .pull-left[
 ```
@@ -126,9 +126,8 @@ comments
 
 ---
 
-##R Markdown Documents (`.Rmd`)
-###The Text Body
-
+## 3 R Markdown Documents (`.Rmd`)
+### 3.2 The Text Body
 
 ```
 # You can use headers (H1)
@@ -143,14 +142,13 @@ comments
 ```
 ### You can use headers (H2)
 
-
 ???
 comments
 
 ---
 
-##R Markdown Documents (`.Rmd`)
-###The Text Body
+## 3 R Markdown Documents (`.Rmd`)
+### 3.2 The Text Body
 
 .pull-left[
 ```
@@ -177,8 +175,8 @@ comments
 
 ---
 
-##R Markdown Documents (`.Rmd`)
-###The Text Body
+## 3 R Markdown Documents (`.Rmd`)
+### 3.2 The Text Body
 
 .pull-left[
 ``` 
@@ -215,8 +213,8 @@ Point to the value of cheat sheets!
 
 ---
 
-##R Markdown Documents (`.Rmd`)
-###Code Chunks & Output
+## 3 R Markdown Documents (`.Rmd`)
+### 3.3 Code Chunks & Output
 
 **Code Chunks:** Self-contained part of your `R` code for which, upon code evaluation, the output of your code is shown directly below the chunk instead of only in your console or the RStudio Viewer or the Plots pane.
 
@@ -234,8 +232,8 @@ The code is send from the chunk to your console where it is evaluated. The outpu
 
 ---
 
-##R Markdown Documents (`.Rmd`)
-###Live Demo
+## 3 R Markdown Documents (`.Rmd`)
+### 3.3 Live Demo
 
 .center[
 ```{r, echo=F}
@@ -254,11 +252,10 @@ show little green bar, talk about chunk names and chunk options, explain how cod
 
 ---
 
-##R Markdown Documents (`.Rmd`)
-###Code Chunks & Output
+## 3 R Markdown Documents (`.Rmd`)
+### 3.3 Code Chunks & Output
 
 **Chunk Options:** Can be set as boolean (**`T`**`rue`/**`F`**`alse`) arguments in the chunk header `{r ...}`.
-
 ```{r, echo=F}
 df <- data.frame(
   Argument = c('include=F', 'eval=F', 'result=F', 'echo=F', 'message=F', 'warning=F'),
@@ -280,8 +277,8 @@ comments
 
 ---
 
-##R Markdown Documents (`.Rmd`)
-###Generating High-Quality Reports
+## 3 R Markdown Documents (`.Rmd`)
+### 3.4 Generating High-Quality Reports
 
 Render the `.Rmd` document into your desired output format by using `knitr::render()` command from the `knitr` package or hit the *Knit* button in your RStudio toolbar.
 
@@ -303,7 +300,7 @@ comments
 
 ---
 
-##R Markdown Documents (`.Rmd`)
+## 3 R Markdown Documents (`.Rmd`)
 
 ```{r, echo=F, out.height='70%', out.width='70%', fig.align='center'}
 knitr::include_graphics("https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/rmarkdown_wizards.png")
@@ -314,8 +311,8 @@ comments
 
 ---
 
-##Interactive Data Science Environments 
-###Introduction to Computational Notebooks
+## 4 Interactive Data Science Environments 
+### 4.1 Introduction to Computational Notebooks
 
 **Computational Notebooks:** Computational notebooks are virtual environments used for [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming). Thereby, they combine functionalities of word processors (e.g., MS Word) and the programming language kernel (e.g., the R shell which you find in the RStudio *Console* Tab).
 
@@ -350,8 +347,8 @@ Notebook Alternatives: Jupyter Notebook (language agnostic, but especially wides
 
 ---
 
-##Interactive Data Science Environments 
-###Introduction to Computational Notebooks
+## 4 Interactive Data Science Environments 
+### 4.1 Introduction to Computational Notebooks
 
 *This sounds pretty familiar after learning about R Markdown docs right? So what is R Notebook all about?*<br><br>
 ```{r, echo=F, out.height='45%', out.width='45%', fig.align='center'}
@@ -363,8 +360,8 @@ comments
 
 ---
 
-##Interactive Data Science Environments 
-###R Markdown Documents vs. R Notebooks
+## 4 Interactive Data Science Environments 
+### 4.2 R Markdown Documents vs. R Notebooks
 
 Primarily, both formats are based on `.Rmd`-files:
 - An R Markdown document can be used as a computational notebook,
@@ -391,8 +388,8 @@ First sentence: you will likely don't see any apparent differences between the t
 
 ---
 
-##Interactive Data Science Environments 
-###Live Demo
+## 4 Interactive Data Science Environments 
+### 4.2 Live Demo
 
 .center[
 ```{r, echo=F}

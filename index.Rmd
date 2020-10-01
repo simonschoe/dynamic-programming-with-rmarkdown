@@ -55,36 +55,36 @@ name: agenda
 
 ##Agenda
 
-**1. Learning Objectives**
+**1 Learning Objectives**
 
-**2. Introduction to RStudio Projects (`.Rproj`)**
+**2 Introduction to RStudio Projects (`.Rproj`)**
 
-**3. R Markdown Documents (`.Rmd`)**
-  1. Document Structure I: Header
-  2. Document Structure II: Text Body
-  3. Document Structure III: Code Chunks & Output (*incl. live demo*)
-  4. Generating High-Quality Reports
+**3 R Markdown Documents (`.Rmd`)**  
+> 3.1 Document Structure I: Header  
+3.2 Document Structure II: Text Body  
+3.3 Document Structure III: Code Chunks & Output (*incl. live demo*)  
+3.4 Generating High-Quality Reports
   
-**4. Interactive Data Science Environments**
-  1. Introduction to Computational Notebooks
-  2. R Markdown documents vs. R Notebooks (*incl. live demo*)
+**4 Interactive Data Science Environments**  
+> 4.1 Introduction to Computational Notebooks  
+4.2 R Markdown Documents vs. R Notebooks (*incl. live demo*)
 
-**5. `renv`: Project Environments**
-  1. Library Paths
-  2. Features of `renv`
-  3. The `renv` Workflow
-  4. Additional Remarks
+**5 `renv`: Project Environments**  
+> 5.1 Library Paths  
+5.2 Features of `renv`  
+5.3 The `renv` Workflow  
+5.4 Additional Remarks
 
 ???
 comment
 
 ---
 
-##Learning Objectives `r emo::ji("idea")`
+## 1 Learning Objectives `r emo::ji("idea")`
 
 This workshop should support you in optimizing your overall data science and machine learning workflow by setting up an RStudio project, conducting your analyses in an interactive notebook environment and maintaining local project libraries.
 
-More specifically, after this workshop you should
+More specifically, after this workshop you will
 - be familiar with features of RStudio projects (`.Rproj`) as well as the differences between absolute and relative directory paths,<br><br>
 - know your way around R Markdown documents (`.Rmd`) and embrace R Notebooks as your primary tool for doing interactive data science and machine learning in `R`,<br><br>
 - see the value in using local project environments to prevent dependency errors, promote collaboration, and ensure reproducibility.
@@ -138,7 +138,5 @@ ___
 **Ushey, K. (2020):** Introduction to `renv`. URL: https://rstudio.github.io/renv/articles/renv.html.
 
 ???
-convert html presentation to pdf:
-
-from online presentation:
+convert online presentation to pdf:
 docker run --rm -t -v %cd%/desktop/l09_desktop/workshops/01_structuring_data_projects/slides:/slides astefanutti/decktape https://simonschoe.github.io/Structuring-Data-Projects/#1 index.pdf
