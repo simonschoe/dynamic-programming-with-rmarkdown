@@ -96,8 +96,15 @@ getwd()
 ```
 <br>
 This path is referred to as an **absolute path**. What files do we find in the project directory?
-```{r}
+```{r, eval=F}
 dir(".")
+```
+```
+>  [1] "01_rstudio_projects.Rmd"         "02_r_notebooks.Rmd"              "03_project_environments.Rmd"    
+>  [4] "custom"                          "demo"                            "img"                            
+>  [7] "index.html"                      "index.Rmd"                       "libs"                           
+> [10] "README.md"                       "renv"                            "renv.lock"                      
+> [13] "slides"                          "structuring_data_projects.Rproj"
 ```
 
 This is basically all the stuff required for rendering this presentation. Put differently: With an `.Rproj`, I organize all the files related to the project in one folder (e.g., script files, data sets, figures, manuscripts, etc.).

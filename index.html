@@ -17,7 +17,7 @@ class: left, middle, inverse, title-slide
 ## Structuring Data Projects
 ### Simon Schölzel
 ### <em>Research Team Berens</em>
-### 2020-08-20 (updated: 2020-10-01)
+### 2020-08-20 (updated: 2020-10-14)
 
 ---
 
@@ -171,20 +171,12 @@ This path is referred to as an **absolute path**. What files do we find in the p
 dir(".")
 ```
 ```
-&gt;  [1] "01_rstudio_projects.Rmd"        
-&gt;  [2] "02_r_notebooks.Rmd"             
-&gt;  [3] "03_project_environments.Rmd"    
-&gt;  [4] "custom"                         
-&gt;  [5] "demo"                           
-&gt;  [6] "img"                            
-&gt;  [7] "index.html"                     
-&gt;  [8] "index.Rmd"                      
-&gt;  [9] "libs"                           
-&gt; [10] "README.md"                      
-&gt; [11] "renv"                           
-&gt; ...
+&gt;  [1] "01_rstudio_projects.Rmd"         "02_r_notebooks.Rmd"              "03_project_environments.Rmd"    
+&gt;  [4] "custom"                          "demo"                            "img"                            
+&gt;  [7] "index.html"                      "index.Rmd"                       "libs"                           
+&gt; [10] "README.md"                       "renv"                            "renv.lock"                      
+&gt; [13] "slides"                          "structuring_data_projects.Rproj"
 ```
-
 
 This is basically all the stuff required for rendering this presentation. Put differently: With an `.Rproj`, I organize all the files related to the project in one folder (e.g., script files, data sets, figures, manuscripts, etc.).
 
@@ -276,12 +268,12 @@ layout: true
 ## 3 R Markdown Documents (`.Rmd`)
 
 .pull-left[
-**`Rmarkdown`:**
-- Markdown-based authoring framework for data science.
-- Embed `R` Code and plain text.
-- Generate high-quality reports.
+**`rmarkdown`:**
+- Markdown-based authoring framework for data science
+- Embed `R` Code and plain text
+- Generate high-quality reports
 
-**`Document elements`:**
+**Document elements:**
 - Header
 - Text body
 - Code &amp; output
@@ -476,7 +468,7 @@ The code is send from the chunk to your console where it is evaluated. The outpu
 ### 3.3 Live Demo
 
 .center[
-<div class="countdown" id="timer_5f75a81a" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
+<div class="countdown" id="timer_5f86c99e" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 ]
@@ -635,7 +627,7 @@ First sentence: you will likely don't see any apparent differences between the t
 ### 4.2 Live Demo
 
 .center[
-<div class="countdown" id="timer_5f75a9d2" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
+<div class="countdown" id="timer_5f86c84c" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 ]
@@ -703,15 +695,6 @@ According to what we have learned, the three projects share the same mutual libr
 
 ???
 comment
-
----
-
-## 5 `renv`: Project Environments
-
-&lt;img src="https://miro.medium.com/max/600/1*EntpL6rY5JThFw6eay6BCA.jpeg" width="80%" height="80%" style="display: block; margin: auto;" /&gt;
-
-???
-image source: "https://miro.medium.com/max/600/1*EntpL6rY5JThFw6eay6BCA.jpeg"
 
 ---
 
@@ -866,7 +849,7 @@ Finally, if we now check our active library path (`.libPaths()`), we observe a n
 
 ```
 &gt; [1] "C:/Users/s_scho53/Desktop/L09_Desktop/workshops/01_structuring_data_projects/renv/library/R-4.0/x86_64-w64-mingw32"
-&gt; [2] "C:/Users/s_scho53/AppData/Local/Temp/Rtmp8SFnvM/renv-system-library"
+&gt; [2] "C:/Users/s_scho53/AppData/Local/Temp/RtmpIfAXL8/renv-system-library"
 ```
 
 ???
@@ -947,18 +930,18 @@ head(renv::dependencies(), 5)
 ```
 
 ```
-&gt;                                          Source   Package
-&gt; 1 C:/Users/s_scho53/.../01_rstudio_projects.Rmd rmarkdown
-&gt; 2 C:/Users/s_scho53/.../01_rstudio_projects.Rmd     knitr
-&gt; 3 C:/Users/s_scho53/.../01_rstudio_projects.Rmd     knitr
-&gt; 4 C:/Users/s_scho53/.../01_rstudio_projects.Rmd     knitr
-&gt; 5      C:/Users/s_scho53/.../02_r_notebooks.Rmd rmarkdown
-&gt;   Version
-&gt; 1        
-&gt; 2        
-&gt; 3        
-&gt; 4        
-&gt; 5
+&gt;                                          Source
+&gt; 1 C:/Users/s_scho53/.../01_rstudio_projects.Rmd
+&gt; 2 C:/Users/s_scho53/.../01_rstudio_projects.Rmd
+&gt; 3 C:/Users/s_scho53/.../01_rstudio_projects.Rmd
+&gt; 4 C:/Users/s_scho53/.../01_rstudio_projects.Rmd
+&gt; 5      C:/Users/s_scho53/.../02_r_notebooks.Rmd
+&gt;     Package Version
+&gt; 1 rmarkdown        
+&gt; 2     knitr        
+&gt; 3     knitr        
+&gt; 4     knitr        
+&gt; 5 rmarkdown
 ```
 
 ???
