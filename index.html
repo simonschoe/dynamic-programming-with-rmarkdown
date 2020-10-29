@@ -17,7 +17,7 @@ class: left, middle, inverse, title-slide
 ## Structuring Data Projects
 ### Simon Schölzel
 ### <em>Research Team Berens</em>
-### 2020-08-20 (updated: 2020-10-14)
+### 2020-11-02 (updated: 2020-10-29)
 
 ---
 
@@ -59,10 +59,10 @@ comment
 
 ## 1 Learning Objectives 💡
 
-This workshop should support you in optimizing your overall data science and machine learning workflow by setting up an RStudio project, conducting your analyses in an interactive notebook environment and maintaining local project libraries.
+This workshop should support you in optimizing your overall data science and machine learning workflow by setting up an RStudio project, conducting your analyses in an interactive notebook environment and maintaining local project libraries (so-called *virtual environments*).
 
 More specifically, after this workshop you will
-- be familiar with features of RStudio projects (`.Rproj`) as well as the differences between absolute and relative directory paths,&lt;br&gt;&lt;br&gt;
+- be familiar with the main features of RStudio projects (`.Rproj`) as well as the differences between absolute and relative directory paths,&lt;br&gt;&lt;br&gt;
 - know your way around R Markdown documents (`.Rmd`) and embrace R Notebooks as your primary tool for doing interactive data science and machine learning in `R`,&lt;br&gt;&lt;br&gt;
 - see the value in using local project environments to prevent dependency errors, promote collaboration, and ensure reproducibility.
 
@@ -78,7 +78,7 @@ You might want the code to run in a couple of month from now when starting your 
 
 class: middle, center, inverse
 
-# Introduction to RStudio Projects
+# 2 Introduction to RStudio Projects
 
 ---
 
@@ -92,8 +92,8 @@ layout: true
 
 ## 2 Introduction to RStudio Projects (`.Rproj`)
 
-**What is an RStudio Project?**
-RStudio Projects offer you a way to structure your data science project and improve your overall workflow:
+**What is an RStudio project?**&lt;br&gt;
+RStudio projects offer you a way to structure your data science project and improve your workflow:
 
 - Keep all the files related to your data science project in a single place.
 - Stop working on one or multiple `R scripts` and return later to continue where you left.
@@ -103,11 +103,11 @@ RStudio Projects offer you a way to structure your data science project and impr
 --
 
 .pull-left[
-**How do I create an RStudio Project?**
-`RStudio` provides three ways of creating an `.Rproj` (*File* -&gt; *New Project...*):
+**How do I create an RStudio project?**&lt;br&gt;
+RStudio provides three ways of creating an `.Rproj` (*File* -&gt; *New Project...*):
 1. As a new file directory
 2. As part of an existing file directory
-3. By cloning a version control repository
+3. By cloning a version control repository (e.g., from GitHub)
 ]
 .pull-right[
 &lt;img src="./img/create-project-1.PNG" width="70%" height="70%" style="display: block; margin: auto;" /&gt;
@@ -122,19 +122,19 @@ name: create-project
 
 ## 2 Introduction to RStudio Projects (`.Rproj`)
 
-Here, I am creating a brand new directory, called `01_r_projects` in which I create this presentation:
+Here, I am creating a brand new directory, called `01_structuring_data_projects` in which I create this presentation:
 
 &lt;img src="./img/create-project-2.PNG" width="50%" height="50%" style="display: block; margin: auto;" /&gt;
 
 ???
-comments
+use renv with this project
 
 ---
 
 ## 2 Introduction to RStudio Projects (`.Rproj`)
 
 **What happens when a new project is created?**
-- RStudio creates a `.Rproj` file within the specified directory. This file contains certain project options and enables to open the *RStudio Project* from your machine's filesystem.
+- RStudio creates a `.Rproj` file within the specified directory. This file contains certain project options and enables to open the RStudio project from your machine's filesystem.
 - RStudio creates a hidden directory (`.Rproj.user`) where project-related temporary files (e.g. auto-saved  documents) are stored.
 - RStudio loads the `.Rproj` file and displays the project name on the far right side of the main toolbar.
 
@@ -144,9 +144,9 @@ comments
 **What happens when a new RStudio Project is opened?**
 - A fresh `R` session is started.
 - The `.RData` file in the project directory is loaded (depending on the project options).
-- The `.Rhistory` file in the project directory is loaded into the *RStudio History pane*.
+- The `.Rhistory` file in the project directory is loaded into the *RStudio history pane*.
 - Previously edited scripts are restored.
-- The current *working directory* is set to the project directory (as previously specified, see [slide 5](#create-project)).
+- The current *working directory* is set to the project directory (as previously specified, see [slide 6](#create-project)).
 - ...
 
 ???
@@ -156,19 +156,20 @@ comments
 
 ## 2 Introduction to RStudio Projects (`.Rproj`)
 
-Let's have a look at the project directory of this presentation (maintained as an `.Rproj`):
+Let's have a look at the project directory for this presentation (maintained as an `.Rproj`):
 
 ```r
-getwd()
+abs_path &lt;- getwd()
+abs_path
 ```
 ```
-&gt; [1] "C:/Users/.../workshops/01_rstudio_projects"
+&gt; [1] "C:/Users/.../workshops/01_structuring_data_projects"
 ```
 &lt;br&gt;
-This path is referred to as an **absolute path**. What files do we find in the project directory?
+This path is referred to as an **absolute path**. What files do we find under this path?
 
 ```r
-dir(".")
+dir(abs_path)
 ```
 ```
 &gt;  [1] "01_rstudio_projects.Rmd"         "02_r_notebooks.Rmd"              "03_project_environments.Rmd"    
@@ -187,23 +188,21 @@ comment
 
 ## 2 Introduction to RStudio Projects (`.Rproj`)
 
-The dot ( `.` ) is a **relative path** to my project directory. Hence, it refers to:
+Instead of using `dir(abs_path)`, you may also use `dir(".")`. When specifying a path on your computer, the single dot ( `.` ) reflects a **relative path**, i.e. a path relative to your current working directory. Hence, it again refers to:
 ```
-&gt; [1] "C:/Users/.../workshops/01_rstudio_projects"
-```
-&lt;br&gt;
-Now, let's assume I want to access a file (`data.txt`) in the subfolder `data`, i.e. search for this file under:
-```
-&gt; [1] "C:/Users/.../workshops/01_rstudio_projects/data"
+&gt; [1] "C:/Users/.../workshops/01_structuring_data_projects"
 ```
 &lt;br&gt;
+Now, let's assume you want to access `data.txt` in the subfolder `data`, i.e. you search for this file under:
+```
+&gt; [1] "C:/Users/.../workshops/01_structuring_data_projects/data"
+```
 What is the corresponding relative path when reading in the data?
 
 ```r
 read.delim("./data/data.txt", header = T, sep = ",")
 ```
-&lt;br&gt;
-The use of relative paths makes it very easy to navigate within your project or share it with collaborators without having to adjust every path manually.
+The use of relative paths makes it very easy to navigate your project or share it with collaborators without having to adjust every path manually!
 
 .footnote[
 *Note: If you want to step one folder up in the folder hierarchy, you may use two dots ( `..` ). When writing paths on Windows, use `/` instead of `\` , otherwise `R` interprets it as an escape character.*
@@ -225,10 +224,10 @@ comment
 
 ## 2 Introduction to RStudio Projects (`.Rproj`)
 
-**Project options:** Access project options within `RStudio` by navigating to *Tools -&gt; Project Options...* .
+**Project options:** Access project options within RStudio by navigating to *Tools -&gt; Project Options...* .
 
-- **Save workspace to `.RData` on exit:** Stores your current `global environment` (workspace) in an `.RData` file in your project directory when closing your *RStudio Project*.&lt;br&gt;&lt;br&gt;
-*Not recommended! You should always be able to recreate your global environment from your scripts. Hence, I would set this behavior of Rstudio to "never" (Tools -&gt; Global Options...).*&lt;br&gt;&lt;br&gt;
+- **Save workspace to `.RData` on exit:** Stores your current `global environment` (workspace) in an `.RData`-file in your project directory when closing your RStudio project.&lt;br&gt;&lt;br&gt;
+*Note: Not recommended! You should always be able to recreate your global environment from your scripts. Hence, I would set this behavior of Rstudio to "never" (Tools -&gt; Global Options...).*&lt;br&gt;&lt;br&gt;
 - **Restore `.RData` into workspace at startup:** Loads your previously saved workspace from the `.RData` file into the `global environment`.&lt;br&gt;&lt;br&gt;
 - **Always save history:** Writes your code history (see history pane) into an `.Rhistory` file located in your project directory.
 
@@ -245,7 +244,7 @@ layout: true
 
 class: middle, center, inverse
 
-# R Markdown Documents and Interactive Data Science Environments
+# 3 R Markdown Documents
 
 ---
 
@@ -268,7 +267,7 @@ layout: true
 ## 3 R Markdown Documents (`.Rmd`)
 
 .pull-left[
-**`rmarkdown`:**
+**The `rmarkdown` package:**
 - Markdown-based authoring framework for data science
 - Embed `R` Code and plain text
 - Generate high-quality reports
@@ -285,7 +284,7 @@ layout: true
 
 .footnote[
 .pull-left[
-*Note: The different document elements apply to R Markdown Documents (`.Rmd`-files) and do not appear in common Script files (`.R`)*.
+*Note: The different document elements apply to R Markdown Documents (`.Rmd`-files) and do not appear in common R Scripts (`.R`-files)*.
 ]]
 
 ???
@@ -302,7 +301,7 @@ The **header** appears at the top of your `.Rmd` document. It contains a bunch o
  ---
  title: "Rmarkdown Demo"    #Title/headline of your markdown report
  author: John Doe           #Name of the author
- date: 2020-08-29           #Date of the report
+ date: 2020-11-02           #Date of the report
  output:                    #YAML options specifying the output
    html_document:               #Output format
      toc: true                  #Table of contents (toc)
@@ -313,6 +312,7 @@ The **header** appears at the top of your `.Rmd` document. It contains a bunch o
 
 ???
 Only a small extract of options you can specify as part of the YAML header.
+YAML: "YAML Ain't Markup Language"
 
 ---
 
@@ -390,6 +390,7 @@ comments
 ```
 &gt; You can highlight quotes,
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 ```
 embed [Hyperlinks](url),
 ```
@@ -437,6 +438,7 @@ you might also want to use some footnotes.[^1]
 
 [^1]: Insert footnote
 ```
+&lt;br&gt;&lt;br&gt;
 And finally, since we are in an academic context you might also want to use some footnotes.&lt;sup&gt;1&lt;/sup&gt;
 
 .footnote[[1] Insert footnote.]
@@ -450,12 +452,12 @@ Point to the value of cheat sheets!
 ## 3 R Markdown Documents (`.Rmd`)
 ### 3.3 Code Chunks &amp; Output
 
-**Code Chunks:** Self-contained part of your `R` code for which, upon code evaluation, the output of your code is shown directly below the chunk instead of only in your console or the RStudio Viewer or the Plots pane.
+**Code Chunks:** Self-contained part of your `R` code for which, upon code evaluation, the output of your code is shown directly below the chunk instead of only in your console or the RStudio viewer or the plots pane.
 
 &lt;img src="./img/fibo.png" width="70%" height="70%" style="float:left; padding:10px" /&gt;
 &lt;br&gt;
 **Creating code chunks**:  
-Using the *insert* button in the RStudio interface ![](./img/insert.png), or via keyboard shortcut: Ctrl + Alt + I
+Using the *insert* button in the RStudio interface ![](./img/insert.png), or via the keyboard shortcut: *Ctrl + Alt + I*.
 
 *Note: In fact, code chunks even allow you to write and evaluate code in other languages, such as Python, SQL or C++.*
 
@@ -468,7 +470,7 @@ The code is send from the chunk to your console where it is evaluated. The outpu
 ### 3.3 Live Demo
 
 .center[
-<div class="countdown" id="timer_5f86c99e" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
+<div class="countdown" id="timer_5f9a8c1a" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 ]
@@ -552,10 +554,16 @@ comments
 
 ---
 
+class: middle, center, inverse
+
+# 4 Interactive Data Science Environments
+
+---
+
 ## 4 Interactive Data Science Environments 
 ### 4.1 Introduction to Computational Notebooks
 
-**Computational Notebooks:** Computational notebooks are virtual environments used for [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming). Thereby, they combine functionalities of word processors (e.g., MS Word) and the programming language kernel (e.g., the R shell which you find in the RStudio *Console* Tab).
+**Computational notebooks** are virtual environments used for [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming). They combine functionalities of word processors (e.g., MS Word) and the programming language kernel (e.g., the R shell which you find in the RStudio console pane).
 
 --
 
@@ -587,8 +595,9 @@ Notebook Alternatives: Jupyter Notebook (language agnostic, but especially wides
 ## 4 Interactive Data Science Environments 
 ### 4.1 Introduction to Computational Notebooks
 
-*This sounds pretty familiar after learning about R Markdown docs right? So what is R Notebook all about?*&lt;br&gt;&lt;br&gt;
-&lt;img src="https://tenor.com/view/obama-wtf-why-president-wut-gif-12221156.gif" width="45%" height="45%" style="display: block; margin: auto;" /&gt;
+.center[This sounds pretty familiar after learning about R Markdown docs right? &lt;br&gt; So what is R Notebook all about?]
+&lt;br&gt;&lt;br&gt;
+&lt;img src="https://tenor.com/view/obama-wtf-why-president-wut-gif-12221156.gif" width="40%" height="40%" style="display: block; margin: auto;" /&gt;
 
 ???
 comments
@@ -627,13 +636,13 @@ First sentence: you will likely don't see any apparent differences between the t
 ### 4.2 Live Demo
 
 .center[
-<div class="countdown" id="timer_5f86c84c" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
+<div class="countdown" id="timer_5f9a8d19" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 ]
 
 ???
-preview of .nb.html which updates everytime the file is saved (simple html snapshot of your notebook and not a final report, i.e. R does not checks that the whole output is free of error)
+preview of .nb.html which updates everytime the file is saved (simple html snapshot of your notebook and not a final report, i.e. R does not check that the whole output is free of error)
 
 Highlight value of code chunks: split large code chunks or code chunks that generate more than one output into multiple chunks -&gt; improve readability, transparency and user experience (also for your future self); also more easy to debug
   
@@ -648,7 +657,7 @@ layout: true
 
 class: middle, center, inverse
 
-# Project Environments
+# 5 Project Environments
 
 ---
 
@@ -661,16 +670,18 @@ class: middle, center, inverse
 **Answer:** Your user-specific *active library path*, i.e. on your disk.
 --
 &lt;br&gt;
-```
+
+```r
 .libPaths()
 ```
 ```
-&gt; [1] "C:/Users/ziv_kennung/Documents/R/R-4.0.2/library"
+&gt; [1] "C:/Users/.../Documents/R/R-4.0.2/library"
 ```
 --
 &lt;br&gt;
-Packages are stored and loaded from the root installation folder (here for Windows operating systems). R crawls this path when loading (`library()`) or downloading packages (`install.packages()`).
-```
+Packages are stored and loaded from the root installation folder (here for Windows operating systems). `R` crawls this path when loading (`library()`) or downloading (`install.packages()`) packages.
+
+```r
 find.package("splines")
 ```
 ```
@@ -689,9 +700,9 @@ By default, this path is accessed each time you run a new `R` session or create 
 
 - Project A requires `dplyr 1.0.0`,
 - Project B requires `dplyr 0.8.1`, and
-- Project C requires the development version of `dplyr`.
+- Project C requires the dev version of `dplyr`.
 
-According to what we have learned, the three projects share the same mutual library path (`C:/Users/ziv_kennung/Documents/R/R-4.0.2/library`). An upgrade or downgrade of the package version increases the chance that one of the projects does not work seamlessly any longer.
+According to what you have learned, the three projects share the same mutual library path (`C:/Users/.../Documents/R/R-4.0.2/library`). An upgrade or downgrade of the package version increases the chance that one of the projects does not work seamlessly any longer.
 
 ???
 comment
@@ -710,15 +721,15 @@ layout: true
 
 `R` package for initializing and managing local project environments, i.e. collections of R packages utilized within an *.Rproj*.
 
-**Isolated projects:**&lt;br&gt;
+**Isolated projects:**  
 - One local library of R packages per `.Rproj`
 - Upgrade/downgrade packages without breaking other projects
 
-**Portable projects:**&lt;br&gt;
+**Portable projects:**  
 - Save the state of your project library in a `lockfile`
-- Share `lockfile` with others and ensure library compatibility
+- Share the `lockfile` with others and ensure library compatibility
 
-**Reproducible projects:**&lt;br&gt;
+**Reproducible projects:**  
 - Use `renv::snapshot()` to save the state of your project library
 - Use `use renv::restore()` to restore the state of your project library as specified in the lockfile
 
@@ -737,7 +748,7 @@ Set up `renv` by running `renv::init()` to initialize your local environment wit
 Write some code, install, uninstall and update some packages...
 
 **Step 3:**  
-Use `renv::snapshot()` to save the current state of your project library to a so-called *lockfile*.
+Use `renv::snapshot()` to save the current state of your project library to the so-called *lockfile*.
 
 **Step 4:**  
 Write some code, install, uninstall and update some packages...
@@ -760,7 +771,7 @@ comment
 --
 &lt;br&gt;
 Under the hood, `renv::init()` establishes the infrastructure to run your project-specific library. More specifically, the following files are written to and used by your `renv`-enabled projects:
-&lt;br&gt;
+
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -771,19 +782,19 @@ Under the hood, `renv::init()` establishes the infrastructure to run your projec
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; .Rprofile &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Used to activate renv whenever a new R session is launched within the project. &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Used to activate renv whenever a new R session is launched within the project &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; renv.lock &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; The lockfile, defining the state of your project library. &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; The lockfile, defining the state of your project library &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; renv/activate.R &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; The activation script run by the project .Rprofile. &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; The activation script run by the project .Rprofile &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; renv/library &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Your local project library. &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Your local project library &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -823,7 +834,7 @@ you cultivate on lock-file per project. as soon as you feel you need to require 
 &lt;img src="https://kevinushey-2020-rstudio-conf.netlify.app/img/package-cache.svg" width="100%" height="100%" /&gt;
 ]
 .pull-right[
-This approach allows you to avoid redundancies, if the same package version is used in multiple projects.
+This approach avoids redundancies, if the same package version is used by multiple projects.
 
 In this case, the installation of the respective package is stored in the global cache with `renv` simply creating a link to this cache within your project. This is what your local **project library** under the path `renv/library` is all about.
 ]
@@ -841,15 +852,14 @@ Picture by [Kevin Ushey](https://kevinushey-2020-rstudio-conf.netlify.app/slides
 ## 5 `renv`: Project Environments
 ### 5.3 The `renv` Workflow: `renv/library`
 
-Finally, if we now check our active library path (`.libPaths()`), we observe a new project-specific path (as well as an additional system library path which you need to consider further at this point).
+Finally, if you now check your active library path (`.libPaths()`), you can observe a new project-specific path (as well as an additional system library path which you need to consider further at this point).
 
 ```r
 .libPaths()
 ```
-
 ```
-&gt; [1] "C:/Users/s_scho53/Desktop/L09_Desktop/workshops/01_structuring_data_projects/renv/library/R-4.0/x86_64-w64-mingw32"
-&gt; [2] "C:/Users/s_scho53/AppData/Local/Temp/RtmpIfAXL8/renv-system-library"
+&gt; [1] "C:/Users/.../01_structuring_data_projects/renv/library/R-4.0/x86_64-w64-mingw32"
+&gt; [2] "C:/Users/.../AppData/Local/Temp/Rtmp0aVyVr/renv-system-library"
 ```
 
 ???
@@ -860,9 +870,9 @@ comments
 ## 5 `renv`: Project Environments
 ### 5.3 The `renv` Workflow: `renv::snapshot()`
 
-After having successfully set up our project-specific library, let's consider the two other main features horses of the `renv` package: `renv::snapshot()` and `renv::restore()`
+After having successfully set up our project-specific library, let's consider the two other main features of the `renv` package: `renv::snapshot()` and `renv::restore()`.
 
-**Snapshot:** updates the lockfile by writing the current state of the project library to the lockfile.
+**`renv::snapshot()`** updates the lockfile by writing the current state of the project library to the lockfile.
 
 
 ```r
@@ -878,7 +888,7 @@ renv::snapshot()
 &gt; - rmarkdown   [* -&gt; 2.3]
 &gt; 
 &gt; Do you want to proceed? [y/N]: y
-&gt;  * Lockfile written to 'C:/Users/s_scho53/Desktop/tidyverse workshop/renv.lock'.
+&gt;  * Lockfile written to 'C:/Users/.../01_structuring_data_projects/renv.lock'.
 ```
 
 ???
@@ -889,9 +899,9 @@ comment
 ## 5 `renv`: Project Environments
 ### 5.3 The `renv` Workflow: `renv::restore()`
 
-After having successfully set up our project-specific library, let's consider the two other main features horses of the `renv` package: `renv::snapshot()` and `renv::restore()`
+After having successfully set up our project-specific library, let's consider the two other main features of the `renv` package: `renv::snapshot()` and `renv::restore()`.
 
-**Restore:** updates the project library by restoring the state of the project library as specified in the lockfile.
+**renv::restore()** updates the project library by restoring the state of the project library as specified in the lockfile.
 
 
 ```r
@@ -918,31 +928,24 @@ comment
 ## 5 `renv`: Project Environments
 ### 5.4 Additional Remarks
 
-- A project is always bound to a particular version of `renv`. Updating the current version of the `renv` package should be done using the `renv::upgrade()` command.&lt;br&gt;&lt;br&gt;
-- When setting up `renv` for an existing project, upon calling `renv::init()` `renv` autonomously crawls all project scripts and searches for packages that are mentioned in your code via `renv::dependencies()`. For this presentation, I relied - among others - on the following packages (note that packages are only identified if explicitly mentioned in the code, i.e. by name):
+A project is always bound to a particular version of `renv`. Updating the current version of the `renv` package should be done using the `renv::upgrade()` command.
+
+When setting up `renv` for an existing project, it crawls all project scripts and searches for packages that are mentioned in your code via `renv::dependencies()`. For this presentation, I relied, among others, on the following packages (note that packages are only identified if explicitly mentioned in the code, i.e. by name):
 
 ```r
 head(renv::dependencies(), 5)
 ```
-
 ```
 &gt; Finding R package dependencies ... Done!
+
+&gt;                                          Source          Package
+&gt; 1 C:/Users/s_scho53/.../01_rstudio_projects.Rmd        rmarkdown
+&gt; 2 C:/Users/s_scho53/.../01_rstudio_projects.Rmd            knitr
+&gt; 3 C:/Users/s_scho53/.../01_rstudio_projects.Rmd            knitr
+&gt; 4 C:/Users/s_scho53/.../01_rstudio_projects.Rmd            knitr
+&gt; 5      C:/Users/s_scho53/.../02_r_notebooks.Rmd        rmarkdown
 ```
 
-```
-&gt;                                          Source
-&gt; 1 C:/Users/s_scho53/.../01_rstudio_projects.Rmd
-&gt; 2 C:/Users/s_scho53/.../01_rstudio_projects.Rmd
-&gt; 3 C:/Users/s_scho53/.../01_rstudio_projects.Rmd
-&gt; 4 C:/Users/s_scho53/.../01_rstudio_projects.Rmd
-&gt; 5      C:/Users/s_scho53/.../02_r_notebooks.Rmd
-&gt;     Package Version
-&gt; 1 rmarkdown        
-&gt; 2     knitr        
-&gt; 3     knitr        
-&gt; 4     knitr        
-&gt; 5 rmarkdown
-```
 
 ???
 Here, only the top 5 entries. `knitr` is three times, according by how often I use the package in my code (here three times for including pictures and gifs in the slides).

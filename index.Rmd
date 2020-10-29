@@ -3,7 +3,7 @@ title: "Machine Learning in R:<br/>Workshop Series"
 subtitle: "Structuring Data Projects"
 author: "Simon Schölzel"
 institute: "*Research Team Berens*"
-date: "2020-08-20 (updated: `r Sys.Date()`)"
+date: "2020-11-02 (updated: `r Sys.Date()`)"
 
 output:
   xaringan::moon_reader:
@@ -82,10 +82,10 @@ comment
 
 ## 1 Learning Objectives `r emo::ji("idea")`
 
-This workshop should support you in optimizing your overall data science and machine learning workflow by setting up an RStudio project, conducting your analyses in an interactive notebook environment and maintaining local project libraries.
+This workshop should support you in optimizing your overall data science and machine learning workflow by setting up an RStudio project, conducting your analyses in an interactive notebook environment and maintaining local project libraries (so-called *virtual environments*).
 
 More specifically, after this workshop you will
-- be familiar with features of RStudio projects (`.Rproj`) as well as the differences between absolute and relative directory paths,<br><br>
+- be familiar with the main features of RStudio projects (`.Rproj`) as well as the differences between absolute and relative directory paths,<br><br>
 - know your way around R Markdown documents (`.Rmd`) and embrace R Notebooks as your primary tool for doing interactive data science and machine learning in `R`,<br><br>
 - see the value in using local project environments to prevent dependency errors, promote collaboration, and ensure reproducibility.
 

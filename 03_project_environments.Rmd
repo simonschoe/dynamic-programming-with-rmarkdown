@@ -9,7 +9,7 @@ layout: true
 
 class: middle, center, inverse
 
-# Project Environments
+# 5 Project Environments
 
 ---
 
@@ -22,16 +22,16 @@ class: middle, center, inverse
 **Answer:** Your user-specific *active library path*, i.e. on your disk.
 --
 <br>
-```
+```{r, eval=F}
 .libPaths()
 ```
 ```
-> [1] "C:/Users/ziv_kennung/Documents/R/R-4.0.2/library"
+> [1] "C:/Users/.../Documents/R/R-4.0.2/library"
 ```
 --
 <br>
-Packages are stored and loaded from the root installation folder (here for Windows operating systems). R crawls this path when loading (`library()`) or downloading packages (`install.packages()`).
-```
+Packages are stored and loaded from the root installation folder (here for Windows operating systems). `R` crawls this path when loading (`library()`) or downloading (`install.packages()`) packages.
+```{r, eval=F}
 find.package("splines")
 ```
 ```
@@ -50,9 +50,9 @@ By default, this path is accessed each time you run a new `R` session or create 
 
 - Project A requires `dplyr 1.0.0`,
 - Project B requires `dplyr 0.8.1`, and
-- Project C requires the development version of `dplyr`.
+- Project C requires the dev version of `dplyr`.
 
-According to what we have learned, the three projects share the same mutual library path (`C:/Users/ziv_kennung/Documents/R/R-4.0.2/library`). An upgrade or downgrade of the package version increases the chance that one of the projects does not work seamlessly any longer.
+According to what you have learned, the three projects share the same mutual library path (`C:/Users/.../Documents/R/R-4.0.2/library`). An upgrade or downgrade of the package version increases the chance that one of the projects does not work seamlessly any longer.
 
 ???
 comment
@@ -71,15 +71,15 @@ layout: true
 
 `R` package for initializing and managing local project environments, i.e. collections of R packages utilized within an *.Rproj*.
 
-**Isolated projects:**<br>
+**Isolated projects:**  
 - One local library of R packages per `.Rproj`
 - Upgrade/downgrade packages without breaking other projects
 
-**Portable projects:**<br>
+**Portable projects:**  
 - Save the state of your project library in a `lockfile`
-- Share `lockfile` with others and ensure library compatibility
+- Share the `lockfile` with others and ensure library compatibility
 
-**Reproducible projects:**<br>
+**Reproducible projects:**  
 - Use `renv::snapshot()` to save the state of your project library
 - Use `use renv::restore()` to restore the state of your project library as specified in the lockfile
 
@@ -98,7 +98,7 @@ Set up `renv` by running `renv::init()` to initialize your local environment wit
 Write some code, install, uninstall and update some packages...
 
 **Step 3:**  
-Use `renv::snapshot()` to save the current state of your project library to a so-called *lockfile*.
+Use `renv::snapshot()` to save the current state of your project library to the so-called *lockfile*.
 
 **Step 4:**  
 Write some code, install, uninstall and update some packages...
@@ -121,11 +121,11 @@ comment
 --
 <br>
 Under the hood, `renv::init()` establishes the infrastructure to run your project-specific library. More specifically, the following files are written to and used by your `renv`-enabled projects:
-<br>
+
 ```{r, echo=F}
 tbl <- data.frame(
   File = c(".Rprofile", "renv.lock", "renv/activate.R", "renv/library"),
-  Usage = c("Used to activate renv whenever a new R session is launched within the project.", "The lockfile, defining the state of your project library.", "The activation script run by the project .Rprofile.", "Your local project library.")
+  Usage = c("Used to activate renv whenever a new R session is launched within the project", "The lockfile, defining the state of your project library", "The activation script run by the project .Rprofile", "Your local project library")
 )
 
 knitr::kable(tbl, format = 'html')
@@ -168,7 +168,7 @@ knitr::include_graphics("https://kevinushey-2020-rstudio-conf.netlify.app/img/pa
 ```
 ]
 .pull-right[
-This approach allows you to avoid redundancies, if the same package version is used in multiple projects.
+This approach avoids redundancies, if the same package version is used by multiple projects.
 
 In this case, the installation of the respective package is stored in the global cache with `renv` simply creating a link to this cache within your project. This is what your local **project library** under the path `renv/library` is all about.
 ]
@@ -186,9 +186,13 @@ Picture by [Kevin Ushey](https://kevinushey-2020-rstudio-conf.netlify.app/slides
 ## 5 `renv`: Project Environments
 ### 5.3 The `renv` Workflow: `renv/library`
 
-Finally, if we now check our active library path (`.libPaths()`), we observe a new project-specific path (as well as an additional system library path which you need to consider further at this point).
-```{r}
+Finally, if you now check your active library path (`.libPaths()`), you can observe a new project-specific path (as well as an additional system library path which you need to consider further at this point).
+```{r, eval=F}
 .libPaths()
+```
+```
+> [1] "C:/Users/.../01_structuring_data_projects/renv/library/R-4.0/x86_64-w64-mingw32"
+> [2] "C:/Users/.../AppData/Local/Temp/Rtmp0aVyVr/renv-system-library"
 ```
 
 ???
@@ -199,9 +203,9 @@ comments
 ## 5 `renv`: Project Environments
 ### 5.3 The `renv` Workflow: `renv::snapshot()`
 
-After having successfully set up our project-specific library, let's consider the two other main features horses of the `renv` package: `renv::snapshot()` and `renv::restore()`
+After having successfully set up our project-specific library, let's consider the two other main features of the `renv` package: `renv::snapshot()` and `renv::restore()`.
 
-**Snapshot:** updates the lockfile by writing the current state of the project library to the lockfile.
+**`renv::snapshot()`** updates the lockfile by writing the current state of the project library to the lockfile.
 
 ```{r, eval=F}
 renv::snapshot()
@@ -216,7 +220,7 @@ renv::snapshot()
 > - rmarkdown   [* -> 2.3]
 > 
 > Do you want to proceed? [y/N]: y
->  * Lockfile written to 'C:/Users/s_scho53/Desktop/tidyverse workshop/renv.lock'.
+>  * Lockfile written to 'C:/Users/.../01_structuring_data_projects/renv.lock'.
 ```
 
 ???
@@ -227,9 +231,9 @@ comment
 ## 5 `renv`: Project Environments
 ### 5.3 The `renv` Workflow: `renv::restore()`
 
-After having successfully set up our project-specific library, let's consider the two other main features horses of the `renv` package: `renv::snapshot()` and `renv::restore()`
+After having successfully set up our project-specific library, let's consider the two other main features of the `renv` package: `renv::snapshot()` and `renv::restore()`.
 
-**Restore:** updates the project library by restoring the state of the project library as specified in the lockfile.
+**renv::restore()** updates the project library by restoring the state of the project library as specified in the lockfile.
 
 ```{r, eval=F}
 renv::restore()
@@ -255,21 +259,23 @@ comment
 ## 5 `renv`: Project Environments
 ### 5.4 Additional Remarks
 
-- A project is always bound to a particular version of `renv`. Updating the current version of the `renv` package should be done using the `renv::upgrade()` command.<br><br>
-- When setting up `renv` for an existing project, upon calling `renv::init()` `renv` autonomously crawls all project scripts and searches for packages that are mentioned in your code via `renv::dependencies()`. For this presentation, I relied - among others - on the following packages (note that packages are only identified if explicitly mentioned in the code, i.e. by name):
+A project is always bound to a particular version of `renv`. Updating the current version of the `renv` package should be done using the `renv::upgrade()` command.
+
+When setting up `renv` for an existing project, it crawls all project scripts and searches for packages that are mentioned in your code via `renv::dependencies()`. For this presentation, I relied, among others, on the following packages (note that packages are only identified if explicitly mentioned in the code, i.e. by name):
 ```{r, eval=F}
 head(renv::dependencies(), 5)
 ```
-```{r, echo=F}
-df <- renv::dependencies()
-
-df$Source <- sub(
-  pattern = "Desktop/L09_Desktop/workshops/01_structuring_data_projects",
-  replacement = "...",
-  df$Source)
-
-head(df, 5)[,c("Source", "Package", "Version")]
 ```
+> Finding R package dependencies ... Done!
+
+>                                          Source          Package
+> 1 C:/Users/s_scho53/.../01_rstudio_projects.Rmd        rmarkdown
+> 2 C:/Users/s_scho53/.../01_rstudio_projects.Rmd            knitr
+> 3 C:/Users/s_scho53/.../01_rstudio_projects.Rmd            knitr
+> 4 C:/Users/s_scho53/.../01_rstudio_projects.Rmd            knitr
+> 5      C:/Users/s_scho53/.../02_r_notebooks.Rmd        rmarkdown
+```
+
 
 ???
 Here, only the top 5 entries. `knitr` is three times, according by how often I use the package in my code (here three times for including pictures and gifs in the slides).
