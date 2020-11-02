@@ -108,8 +108,9 @@ RStudio projects offer you a way to structure your data science projects and imp
 ]
 .pull-right[
 ```
-R Studio Project
+Data Science Project
 |   README.md
+|   rstudio_project.Rproj
 |   main_script.R    
 ├── figures
 |   ├── fig_01.PNG
@@ -121,8 +122,7 @@ R Studio Project
 └── scripts
     ├── 01_pkg_mgmt.R
     ├── 02_functions.R
-    ├── 03_params.R
-    └── 04_analysis.R
+    └── 03_params.R
 ```
 ]
 
@@ -422,11 +422,11 @@ embed [Hyperlinks](https://raw.githubusercontent.com/rstudio/cheatsheets/master/
 ]
 .pull-right[
 ```
-or include images: ![](url),
+or include images: ![](url).
 ``` 
 or include images:
 
-![](https://i.pinimg.com/originals/32/49/65/32496554a4f599228677bbf7919024bb.png),
+![](https://i.pinimg.com/originals/32/49/65/32496554a4f599228677bbf7919024bb.png).
 ]
 
 ???
@@ -504,7 +504,7 @@ Note:
 ### 3.3 Live Demo
 
 .center[
-<div class="countdown" id="timer_5f9fe686" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
+<div class="countdown" id="timer_5fa01293" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 ]
@@ -671,7 +671,7 @@ First sentence: you will likely don't see any apparent differences between the t
 ### 4.2 Live Demo
 
 .center[
-<div class="countdown" id="timer_5f9fe87b" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
+<div class="countdown" id="timer_5fa01158" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 ]
@@ -680,6 +680,8 @@ First sentence: you will likely don't see any apparent differences between the t
 preview of .nb.html which updates every time the file is saved (simple html snapshot of your notebook and not a final report, i.e. R does not check that the whole output is free of error)
 
 Highlight value of code chunks: split large code chunks or code chunks that generate more than one output into multiple chunks -&gt; improve readability, transparency and user experience (also for your future self); also more easy to debug
+
+!NOTE! This could never be rendered to PDF as an error occurs.
   
 
 ---
@@ -730,15 +732,15 @@ find.package("splines")
 
 By default, this path is accessed each time you run a new `R` session or create a new `.Rproj`. Yet, the required version of a given package may vary across projects (e.g., depending on the project's start date):
 
-- Project A requires `dplyr 1.0.0`,
-- Project B requires `dplyr 0.8.1`, and
+- Project A requires `dplyr v1.0.0`,
+- Project B requires `dplyr v0.8.1`, and
 - Project C requires the dev version of `dplyr`.
 
 According to what you have learned, the three projects share the same mutual library path:
 ```
 C:/Users/.../Documents/R/R-4.0.2/library
 ```
-An upgrade or downgrade of the package version increases the chance that one of the projects does not work seamlessly any longer.
+An upgrade or downgrade of the package version increases the chance that one of the projects does not work seamlessly any longer due to **dependency errors**.
 
 ---
 

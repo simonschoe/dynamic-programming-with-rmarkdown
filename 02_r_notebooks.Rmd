@@ -176,11 +176,11 @@ embed [Hyperlinks](https://raw.githubusercontent.com/rstudio/cheatsheets/master/
 ]
 .pull-right[
 ```
-or include images: ![](url),
+or include images: ![](url).
 ``` 
 or include images:
 
-![](https://i.pinimg.com/originals/32/49/65/32496554a4f599228677bbf7919024bb.png),
+![](https://i.pinimg.com/originals/32/49/65/32496554a4f599228677bbf7919024bb.png).
 ]
 
 ???
@@ -438,4 +438,6 @@ countdown::countdown(
 preview of .nb.html which updates every time the file is saved (simple html snapshot of your notebook and not a final report, i.e. R does not check that the whole output is free of error)
 
 Highlight value of code chunks: split large code chunks or code chunks that generate more than one output into multiple chunks -> improve readability, transparency and user experience (also for your future self); also more easy to debug
+
+!NOTE! This could never be rendered to PDF as an error occurs.
   

@@ -45,15 +45,15 @@ find.package("splines")
 
 By default, this path is accessed each time you run a new `R` session or create a new `.Rproj`. Yet, the required version of a given package may vary across projects (e.g., depending on the project's start date):
 
-- Project A requires `dplyr 1.0.0`,
-- Project B requires `dplyr 0.8.1`, and
+- Project A requires `dplyr v1.0.0`,
+- Project B requires `dplyr v0.8.1`, and
 - Project C requires the dev version of `dplyr`.
 
 According to what you have learned, the three projects share the same mutual library path:
 ```
 C:/Users/.../Documents/R/R-4.0.2/library
 ```
-An upgrade or downgrade of the package version increases the chance that one of the projects does not work seamlessly any longer.
+An upgrade or downgrade of the package version increases the chance that one of the projects does not work seamlessly any longer due to **dependency errors**.
 
 ---
 

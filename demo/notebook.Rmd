@@ -35,4 +35,3 @@ Try to load data that does not exist
 ```{r}
 read.csv("non-existing-data.csv")
 ```
-

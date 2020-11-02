@@ -30,8 +30,9 @@ RStudio projects offer you a way to structure your data science projects and imp
 ]
 .pull-right[
 ```
-R Studio Project
+Data Science Project
 |   README.md
+|   rstudio_project.Rproj
 |   main_script.R    
 ├── figures
 |   ├── fig_01.PNG
@@ -43,8 +44,7 @@ R Studio Project
 └── scripts
     ├── 01_pkg_mgmt.R
     ├── 02_functions.R
-    ├── 03_params.R
-    └── 04_analysis.R
+    └── 03_params.R
 ```
 ]
 
