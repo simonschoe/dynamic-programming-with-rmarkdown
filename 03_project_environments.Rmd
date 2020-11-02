@@ -16,12 +16,12 @@ class: middle, center, inverse
 ## 5 `renv`: Project Environments
 ### 5.1 Library Paths
 
-**Question:** Where does R store my installed packages respectively loads them from?
+**Question:** Where does `R` generally store my installed packages respectively loads them from?
 --
 <br><br>
-**Answer:** Your user-specific *active library path*, i.e. on your disk.
+**Answer:** Your user-specific *active library path*, i.e. from disk.
 --
-<br>
+
 ```{r, eval=F}
 .libPaths()
 ```
@@ -29,7 +29,7 @@ class: middle, center, inverse
 > [1] "C:/Users/.../Documents/R/R-4.0.2/library"
 ```
 --
-<br>
+
 Packages are stored and loaded from the root installation folder (here for Windows operating systems). `R` crawls this path when loading (`library()`) or downloading (`install.packages()`) packages.
 ```{r, eval=F}
 find.package("splines")
@@ -37,9 +37,6 @@ find.package("splines")
 ```
 > [1] "C:/Users/.../Documents/R/R-4.0.2/library/splines"
 ```
-
-???
-comment
 
 ---
 
@@ -52,10 +49,11 @@ By default, this path is accessed each time you run a new `R` session or create 
 - Project B requires `dplyr 0.8.1`, and
 - Project C requires the dev version of `dplyr`.
 
-According to what you have learned, the three projects share the same mutual library path (`C:/Users/.../Documents/R/R-4.0.2/library`). An upgrade or downgrade of the package version increases the chance that one of the projects does not work seamlessly any longer.
-
-???
-comment
+According to what you have learned, the three projects share the same mutual library path:
+```
+C:/Users/.../Documents/R/R-4.0.2/library
+```
+An upgrade or downgrade of the package version increases the chance that one of the projects does not work seamlessly any longer.
 
 ---
 
@@ -69,7 +67,7 @@ layout: true
 ## 5 `renv`: Project Environments
 ### 5.2 Features of `renv`
 
-`R` package for initializing and managing local project environments, i.e. collections of R packages utilized within an *.Rproj*.
+`R` package for initializing and managing local project environments, i.e. collections of R packages utilized only within a certain *.Rproj*.
 
 **Isolated projects:**  
 - One local library of R packages per `.Rproj`
@@ -77,14 +75,11 @@ layout: true
 
 **Portable projects:**  
 - Save the state of your project library in a `lockfile`
-- Share the `lockfile` with others and ensure library compatibility
+- Share the `lockfile` with others and ensure compatibility
 
 **Reproducible projects:**  
 - Use `renv::snapshot()` to save the state of your project library
-- Use `use renv::restore()` to restore the state of your project library as specified in the lockfile
-
-???
-comment
+- Use `renv::restore()` to restore the state of your project library as specified in the lockfile
 
 ---
 
@@ -95,19 +90,16 @@ comment
 Set up `renv` by running `renv::init()` to initialize your local environment with a private library of `R` packages specific to your project.
 
 **Step 2:**  
-Write some code, install, uninstall and update some packages...
+Write some code, install, uninstall and update some packages.
 
 **Step 3:**  
-Use `renv::snapshot()` to save the current state of your project library to the so-called *lockfile*.
+Use `renv::snapshot()` to writte the current state of your project library to the so-called *lockfile*.
 
 **Step 4:**  
-Write some code, install, uninstall and update some packages...
+Write some code, install, uninstall and update some packages.
 
 **Step 5:**  
 Use `renv::restore()` to revert to the library state encoded in your *lockfile* in case you run into problems while working with updated packages.
-
-???
-comment
 
 ---
 
@@ -118,8 +110,7 @@ comment
 > install.packages("renv")
 > renv::init()
 ```
---
-<br>
+
 Under the hood, `renv::init()` establishes the infrastructure to run your project-specific library. More specifically, the following files are written to and used by your `renv`-enabled projects:
 
 ```{r, echo=F}
@@ -132,14 +123,18 @@ knitr::kable(tbl, format = 'html')
 ```
 
 ???
-comment
+this is not super important to know but you might wander what all the new files in your project folder are meant for
 
 ---
 
 ## 5 `renv`: Project Environments
 ### 5.3 The `renv` Workflow: `renv.lock`
 
-The **lockfile** stores all information necessary to re-install the required packages, e.g., when sharing the project with a collaborator, archiving a project or putting code into productive use (*deployment*). Packages can be downloaded from: `CRAN`, `Bioconductor`, `GitHub`, `Gitlab`, `Bitbucket`.
+The **lockfile** stores all information necessary to re-install the required packages, e.g., when sharing the project with a collaborator, archiving a project or putting code into productive use (*deployment*).
+
+Packages can be downloaded from: `CRAN`, `Bioconductor`, `GitHub`, `Gitlab`, `Bitbucket`.
+
+--
 
 **Exemplary lockfile entry in JSON format:**
 ```
@@ -151,9 +146,10 @@ The **lockfile** stores all information necessary to re-install the required pac
   "Hash": "1c3ef87cbb81c23ac96797781ec7aecc"
 }
 ```
+
 ???
 JSON: list of key-value pairs
-you cultivate on lock-file per project. as soon as you feel you need to require another lockfile (e.g., due to differeing package versions) you should rather start a new R project.
+you cultivate one lock-file per project. as soon as you feel you need to require another lockfile (e.g., due to differing package versions) you should rather start a new R project.
 
 ---
 
@@ -186,7 +182,7 @@ Picture by [Kevin Ushey](https://kevinushey-2020-rstudio-conf.netlify.app/slides
 ## 5 `renv`: Project Environments
 ### 5.3 The `renv` Workflow: `renv/library`
 
-Finally, if you now check your active library path (`.libPaths()`), you can observe a new project-specific path (as well as an additional system library path which you need to consider further at this point).
+Finally, if you now check your *active library path*, you can observe a new project-specific path (as well as an additional system library path which you need not consider further at this point).
 ```{r, eval=F}
 .libPaths()
 ```
@@ -194,9 +190,6 @@ Finally, if you now check your active library path (`.libPaths()`), you can obse
 > [1] "C:/Users/.../01_structuring_data_projects/renv/library/R-4.0/x86_64-w64-mingw32"
 > [2] "C:/Users/.../AppData/Local/Temp/Rtmp0aVyVr/renv-system-library"
 ```
-
-???
-comments
 
 ---
 
@@ -206,11 +199,12 @@ comments
 After having successfully set up our project-specific library, let's consider the two other main features of the `renv` package: `renv::snapshot()` and `renv::restore()`.
 
 **`renv::snapshot()`** updates the lockfile by writing the current state of the project library to the lockfile.
-
 ```{r, eval=F}
 renv::snapshot()
 ```
+
 --
+
 ```
 > The following package(s) will be updated in the lockfile:
 > 
@@ -223,9 +217,6 @@ renv::snapshot()
 >  * Lockfile written to 'C:/Users/.../01_structuring_data_projects/renv.lock'.
 ```
 
-???
-comment
-
 ---
 
 ## 5 `renv`: Project Environments
@@ -234,7 +225,6 @@ comment
 After having successfully set up our project-specific library, let's consider the two other main features of the `renv` package: `renv::snapshot()` and `renv::restore()`.
 
 **renv::restore()** updates the project library by restoring the state of the project library as specified in the lockfile.
-
 ```{r, eval=F}
 renv::restore()
 ```
@@ -251,9 +241,6 @@ renv::restore()
 > Installing rmarkdown [2.3] ... OK (copied cache)
 ```
 
-???
-comment
-
 ---
 
 ## 5 `renv`: Project Environments
@@ -261,7 +248,7 @@ comment
 
 A project is always bound to a particular version of `renv`. Updating the current version of the `renv` package should be done using the `renv::upgrade()` command.
 
-When setting up `renv` for an existing project, it crawls all project scripts and searches for packages that are mentioned in your code via `renv::dependencies()`. For this presentation, I relied, among others, on the following packages (note that packages are only identified if explicitly mentioned in the code, i.e. by name):
+When setting up `renv` for an existing project, it crawls all project scripts and searches for packages that are mentioned in your code via `renv::dependencies()`. For this presentation, I relied, among others, on the following packages (note that packages are only identified if mentioned in the code by namespace):
 ```{r, eval=F}
 head(renv::dependencies(), 5)
 ```
@@ -276,7 +263,5 @@ head(renv::dependencies(), 5)
 > 5      C:/Users/s_scho53/.../02_r_notebooks.Rmd        rmarkdown
 ```
 
-
 ???
-Here, only the top 5 entries. `knitr` is three times, according by how often I use the package in my code (here three times for including pictures and gifs in the slides).
-
+Here, only the top 5 entries. `knitr` is three times, according to how often I use the package in my code (here three times for including pictures and gifs in the slides).

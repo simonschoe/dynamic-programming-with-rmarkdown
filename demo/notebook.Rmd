@@ -1,7 +1,7 @@
 ---
 title: "R Notebook"
 author: Simon Schölzel
-date: 2020-08-30
+date: 2020-11-02
 output: html_notebook
 ---
 
@@ -14,7 +14,7 @@ data(mtcars)
 mtcars
 ```
 
-# Exploratory Data Analysis
+# Exploratory Data Analysis (EDA)
 
 Show all different car models
 ```{r}
