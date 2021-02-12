@@ -279,10 +279,10 @@ show little green bar, talk about chunk names and chunk options, explain how cod
 ## 3 R Markdown Documents (`.Rmd`)
 ### 3.3 Code Chunks & Output
 
-**Chunk Options:** Can be set as boolean (**`T`**`rue`/**`F`**`alse`) arguments in the chunk header `{r ...}`.
+**Chunk Options:** Can be (mostly) set as boolean (**`T`**`rue`/**`F`**`alse`) arguments in the chunk header `{r ...}`.
 ```{r, echo=F}
 df <- data.frame(
-  Argument = c('include=F', 'eval=F', 'result=F', 'echo=F', 'message=F', 'warning=F'),
+  Argument = c('include=F', 'eval=F', 'results="hide"', 'echo=F', 'message=F', 'warning=F'),
   Description = c(
     'Code and Output does not appear in the final report (yet, code is still evaluated).',
     'Output does not appear in the final report as the code is not evaluated.',
