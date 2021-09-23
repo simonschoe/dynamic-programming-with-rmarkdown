@@ -1,273 +1,68 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Machine Learning in R: Workshop Series</title>
+    <title>Machine Learning in R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Simon Schölzel" />
-    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
-    <script src="libs/countdown-0.3.5/countdown.js"></script>
-    <link rel="stylesheet" href="custom\xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="custom\custom-theme.css" type="text/css" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.6/panelset.js"></script>
+    <script src="libs/xaringanExtra-webcam-0.0.1/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <link href="libs/xaringanExtra-extra-styles-0.2.6/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom/xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="custom/custom-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
-class: left, middle, inverse, title-slide
-
-# Machine Learning in R:<br/>Workshop Series
-## Structuring Data Projects
-### Simon Schölzel
-### <em>Research Team Berens</em>
-### 2020-11-02 (updated: 2020-11-02)
-
----
 
 
 
 
+class: center, middle, hide-count
+count: false
 
+# Machine Learning in R
+### Dynamic Documents with Rmarkdown
 
+___
 
+**Simon Schölzel**
 
-name: agenda
+Winter Term 2021/2022  
+.small[(updated: 2021-09-23)]
 
-##Agenda
-
-**1 Learning Objectives**
-
-**2 Introduction to RStudio Projects (`.Rproj`)**
-
-**3 R Markdown Documents (`.Rmd`)**  
-&gt; 3.1 Document Structure I: Header  
-3.2 Document Structure II: Text Body  
-3.3 Document Structure III: Code Chunks &amp; Output (*incl. live demo*)  
-3.4 Generating High-Quality Reports
-  
-**4 Interactive Data Science**  
-&gt; 4.1 Introduction to Computational Notebooks  
-4.2 R Markdown Documents vs. R Notebooks (*incl. live demo*)
-
-**5 `renv`: Project Environments**  
-&gt; 5.1 Library Paths  
-5.2 Features of `renv`  
-5.3 The `renv` Workflow  
-5.4 Additional Remarks
-
-???
-comment
-
----
-
-## 1 Learning Objectives 💡
-
-This workshop should support you in optimizing your overall data science and machine learning workflow by setting up an RStudio project, conducting your analyses in an interactive notebook environment and maintaining local project libraries (so-called *virtual environments*).
-
-More specifically, after this workshop you will
-- be familiar with the main features of RStudio projects (`.Rproj`) as well as the differences between absolute and relative directory paths,&lt;br&gt;&lt;br&gt;
-- know your way around R Markdown documents (`.Rmd`) and embrace R Notebooks as your primary tool for doing interactive data science and machine learning in `R`,&lt;br&gt;&lt;br&gt;
-- see the value in using local project environments to prevent dependency errors, promote collaboration, and ensure reproducibility.
-
-???
-.proj:
-- .proj as file extension of an Rproject
-- relevant with regards to your potential master thesis resp. any empirical project you conduct in R
-
-rNotebook: Why bothering: The assignments will be an R Notebook, and Rmarkdown will be used during the online course and to write into R Notebooks.
-
-renv:
-- You might want the code to run in a couple of month from now when starting your master thesis
-- what usually happens if you try to run an old code on your machine is that you get numerous errors (functions no longer work or packages are missing)
-
----
-
-
-
-class: middle, center, inverse
-
-# 2 Introduction to RStudio Projects
-
----
-
-background-image: url(https://cdn.fileinfo.com/img/icons/files/128/rproj-10013.png)
-background-position: 95% 5%
-background-size: 7.5%
-layout: true
-
-
----
-
-## 2 Introduction to RStudio Projects (`.Rproj`)
-
-.pull-left[
-**What is an RStudio project?**&lt;br&gt;
-RStudio projects offer you a way to structure your data science projects and improve your workflow:
-
-- Keep all the files related to your data science project in a single place.
-- Stop working on one or multiple `R` scripts and return later to continue where you left.
-- Structure your project or analysis in a modular manner.
-- Easily share your whole project with collaborators.
-]
-.pull-right[
-```
-Data Science Project
-|   README.md
-|   rstudio_project.Rproj
-|   main_script.R    
-├── figures
-|   ├── fig_01.PNG
-|   ├── fig_02.PNG
-|   └── ...
-├── data
-|   ├── raw_data.csv
-|   └── clean_data.rds
-└── scripts
-    ├── 01_pkg_mgmt.R
-    ├── 02_functions.R
-    └── 03_params.R
-```
-]
-
----
-
-name: create-project
-
-## 2 Introduction to RStudio Projects (`.Rproj`)
-
-.pull-left[
-**How do I create an RStudio project?**&lt;br&gt;
-RStudio provides three ways of creating an `.Rproj` (*File* -&gt; *New Project...*):
-1. As a new file directory
-2. As part of an existing file directory
-3. By cloning a version control repository (e.g., from GitHub)
-
-Here, I create a brand new directory, called `01_structuring_data_projects` in which I organize this presentation:
-]
-.pull-right[
-&lt;img src="./img/create-project-1.PNG" width="50%" height="50%" style="display: block; margin: auto;" /&gt;
-
-&lt;img src="./img/create-project-2.PNG" width="50%" height="50%" style="display: block; margin: auto;" /&gt;
-]
-
-???
-as you can see you immediately have the option in link it to a Git repo or use `renv` with this project (everything is seamlessly interlinked)
-
----
-
-## 2 Introduction to RStudio Projects (`.Rproj`)
-
-**What happens when a new project is created?**
-- RStudio creates a `.Rproj` file within the specified directory. This file contains certain project options and enables to open the RStudio project from your machine's filesystem (e.g., desktop).
-- RStudio creates a hidden directory (`.Rproj.user`) where project-related temporary files (e.g. auto-saved  documents) are stored.
-- RStudio loads the `.Rproj` file and displays the project name on the far right side of the main toolbar.
-
---
 &lt;br&gt;&lt;br&gt;
 
-**What happens when a new RStudio Project is opened?**
-- A fresh `R` session is started.
-- The `.RData` file in the project directory is loaded (depending on the project options).
-- The `.Rhistory` file in the project directory is loaded into the *RStudio history pane*.
-- Previously edited scripts are restored.
-- The current *working directory* is set to the project directory (as  specified upon creation, see [slide 6](#create-project)).
+&lt;a href="https://www.wiwi.uni-muenster.de/"&gt;&lt;img src="https://www.wiwi.uni-muenster.de/fakultaet/sites/all/themes/wwucd/assets/images/logos/secondary_wiwi_aacsb_german.jpg" alt="fb4-logo" height="45"&gt;&lt;/a&gt; &lt;a href="https://www.wiwi.uni-muenster.de/ctrl/aktuelles"&gt;&lt;img src="https://www.wiwi.uni-muenster.de/ctrl/sites/all/themes/wwucd/assets/images/logos/berenslogo5.jpg" alt="ftb-logo" height="45"&gt;&lt;/a&gt; &lt;a href="https://www.wiwi.uni-muenster.de/iff2/de/news"&gt;&lt;img src="https://www.wiwi.uni-muenster.de/iff2/sites/all/themes/wwucd/assets/images/logos/logo_iff2_en2.jpg" alt="ipb-logo" height="45"&gt;&lt;/a&gt;
 
 ---
 
-## 2 Introduction to RStudio Projects (`.Rproj`)
+## Agenda
 
-Let's have a look at the project directory for this presentation (maintained as an `.Rproj`):
+**1 The Story So Far: `R` Scripts**
 
-```r
-abs_path &lt;- getwd()
-abs_path
-```
-```
-&gt; [1] "C:/Users/.../workshops/01_structuring_data_projects"
-```
-&lt;br&gt;
-This path is referred to as an **absolute path**. What files do we find under this path?
-
-```r
-dir(abs_path)
-```
-```
-&gt;  [1] "01_rstudio_projects.Rmd"         "02_r_notebooks.Rmd"              "03_project_environments.Rmd"    
-&gt;  [4] "custom"                          "demo"                            "img"                            
-&gt;  [7] "index.html"                      "index.Rmd"                       "libs"                           
-&gt; [10] "README.md"                       "renv"                            "renv.lock"                      
-&gt; [13] "slides"                          "structuring_data_projects.Rproj"
-```
-
-This is basically all the stuff required for rendering this presentation. Put differently: With an `.Rproj`, I organize all the files related to the project in one folder (e.g., script files, data sets, figures, manuscripts, etc.).
+**2 R Markdown Documents**  
+&gt; 2.1 The `YAML` Header  
+2.2 The Text Body  
+2.3 Code Chunks &amp; Output 
+2.4 Generating High-Quality Reports
+  
+**3 Interactive Data Science**  
+&gt; 3.1 Introduction to Computational Notebooks  
+3.2 R Markdown Documents vs. R Notebooks
 
 ---
 
-## 2 Introduction to RStudio Projects (`.Rproj`)
+## 1 The Story So Far: `R` Scripts
 
-Instead of using `dir("C:/Users/.../workshops/01_structuring_data_projects")`, you should rather use `dir(".")`. When specifying a path on your computer, the single dot ( `.` ) reflects a **relative path**, i.e. a path relative to your current working directory. Hence, `"."` again refers to:
-```
-&gt; [1] "C:/Users/.../workshops/01_structuring_data_projects"
-```
+&lt;img src="./img/r-script.PNG" width="70%" style="display: block; margin: auto;" /&gt;
 
 --
 
-Now, let's assume you want to access `raw_data.txt` in the subfolder `data`, i.e. you search for this file under:
-```
-&gt; [1] "C:/Users/.../workshops/01_structuring_data_projects/data"
-```
-What is the corresponding relative path when reading in the data?
-
---
-
-
-```r
-read.delim("./data/raw_data.txt", header = T, sep = ",")
-```
-The use of relative paths makes it very easy to navigate your project or share it with collaborators without having to adjust every path manually!
-
-.footnote[
-*Note: If you want to step one folder up in the folder hierarchy, you may use two dots ( `..` ). When writing paths on Windows, use `/` instead of `\` , otherwise `R` interprets it as an escape character.*
+.center[
+With R scripts (`.R`), a report of your analysis must be drawn separately from your code (e.g., in MS Word) while collecting all plots and results you have previously written to file (e.g., `.PNG` or `.csv`). More importantly, each change of the code requires a whole review of the report!
 ]
-
----
-
-## 2 Introduction to RStudio Projects (`.Rproj`)
-&lt;br&gt;
-&lt;img src="https://media1.tenor.com/images/f72cb542d6b3e3c3421889e0a3d9628d/tenor.gif" width="50%" height="50%" style="display: block; margin: auto;" /&gt;
-
-???
-you may not realized it at first, but eventually working with relative paths will make a lot of stuff a lot easier - especially when working together on projects across multiple computers
-
----
-
-## 2 Introduction to RStudio Projects (`.Rproj`)
-
-**Project options:** For each RStudio project you can specify a set of project-specific options (these override the set of global options). Access project options within RStudio by navigating to *Tools -&gt; Project Options...* .
-
-- **Save workspace to `.RData` on exit:** Stores your current *global environment* (workspace resp. *RStudio environment pane*) in an `.RData`-file in your project directory when closing your RStudio project.&lt;br&gt;&lt;br&gt;
-*Note: Not recommended! You should always be able to recreate your global environment from your scripts. Hence, I would set this behavior of Rstudio to "never" (Tools -&gt; Global Options...).*&lt;br&gt;&lt;br&gt;
-- **Restore `.RData` into workspace at startup:** Loads your previously saved workspace from the `.RData` file into the *global environment*.&lt;br&gt;&lt;br&gt;
-- **Always save history:** Writes your code history (*RStudio history pane*) into an `.Rhistory` file located in your project directory.
-
----
-
-
-
-layout: true
-
----
-
-class: middle, center, inverse
-
-# 3 R Markdown Documents
-
----
-
-## 3 The Story So Far: R Scripts (**`.R`**)
-
-&lt;img src="./img/r-script.PNG" width="65%" height="65%" style="display: block; margin: auto;" /&gt;
-
---
-
-With R scripts (`.R`), a report of your analysis must be drawn separately from your code (e.g., in MS Word) while collecting all plots and results you have previously written to file (e.g., `.PNG` or `.csv`). More importantly, each change of the code requires a whole review of the report! 😩
 
 ???
 - file extension `.R`
@@ -279,7 +74,6 @@ With R scripts (`.R`), a report of your analysis must be drawn separately from y
 - send the whole code to console or just chunks
 - not really a good approach because you are going back and forth between console and script the whole time
 - and what does this workflow look like if you have to write a report based on your code (e.g., your thesis)?
-- &lt;click&gt;
 
 ---
 
@@ -290,7 +84,7 @@ layout: true
 
 ---
 
-## 3 R Markdown Documents (`.Rmd`)
+## 2 R Markdown Documents
 
 .pull-left[
 **The `rmarkdown` package:**
@@ -305,36 +99,37 @@ layout: true
 ]
 .pull-right[
 &lt;iframe src="https://player.vimeo.com/video/178485416?color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen&gt;&lt;/iframe&gt;
-&lt;p&gt;&lt;a href="https://vimeo.com/178485416"&gt;What is R Markdown?&lt;/a&gt; from &lt;a href="https://vimeo.com/rstudioinc"&gt;RStudio, Inc.&lt;/a&gt; on &lt;a href="https://vimeo.com"&gt;Vimeo&lt;/a&gt;.&lt;/p&gt;
 ]
 
 .footnote[
-.pull-left[
 *Note: The different document elements apply to R Markdown Documents (`.Rmd`-files) and do not appear in common R Scripts (`.R`-files)*.
-]]
-
-???
-show video on sec 16
+]
 
 ---
 
-## 3 R Markdown Documents (`.Rmd`)
-### 3.1 The Header
+## 2 R Markdown Documents
+### 2.1 The `YAML` Header
 
 The **`YAML` header** appears at the top of each `.Rmd` document. It contains a bunch of metadata as well as formatting options for your final report. The syntax for the header is based on [YAML](https://en.wikipedia.org/wiki/YAML).
 
 ```
  ---
- title: "Rmarkdown Demo"    #Title/headline of your markdown report
- author: John Doe           #Name of the author
- date: 2020-11-02           #Date of the report
- output:                    #YAML options specifying the output
-   html_document:               #Output format
-     toc: true                  #Table of contents (toc)
-     toc_float: true            #Floating toc on the left side of the document
-     toc_depth: 2               #Depth of headers to generate toc
+ title: "Rmarkdown Demo"    # Title/headline of your markdown report
+ author: John Doe           # Name of the author
+ date: 2021-10-11           # Date of the report
+ output:                    # YAML options specifying the output
+   html_document:               # Output format
+     toc: true                  # Table of contents (toc)
+     toc_float: true            # Floating toc on the left side of the document
+     toc_depth: 2               # Depth of headers to generate toc
  ---
 ```
+
+Importantly, `.Rmd` can be converted to a plethora of different file formats, e.g., HTML, PDF, Word, even Powerpoint slides, by specifying the `output` argument.
+
+.footnote[
+*Note: For the various options of modifying the header of an HTML document see [Xie/Allaire/Grolemund (2021)](https://bookdown.org/yihui/rmarkdown/html-document.html).*
+]
 
 ???
 YAML: "YAML Ain't Markup Language"
@@ -342,153 +137,140 @@ Only a small extract of options you can specify as part of the YAML header.
 
 ---
 
-## 3 R Markdown Documents (`.Rmd`)
-### 3.2 The Text Body
+## 2 R Markdown Documents
+### 2.2 The Text Body
 
+In principal, `.Rmd`-documents allow you to format text in the same way as Microsoft Word would, only that you insert and format text using a special syntax: *markdown*.
+
+.panelset[
+.panel[.panel-name[Text Formatting]
 .pull-left[
-```
-You can write plain text,
-```
-```
-in *italics* or in **bold**,
-```
-```
-and use S^uperscript^ or S~ubscript~.
-```
-```
-You can format text as `fancy R code`,
-```
-```
-and even embed LaTeX equations:
+Text in \*italics\* or in \*\*bold\*\*
+- Text in *italics* or in **bold**
 
-$$
-x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}
-$$
-```
+Text in S^uperscript^ or S~ubscript~
+- Text in S&lt;sup&gt;uperscript&lt;/sup&gt; or S&lt;sub&gt;ubscript&lt;/sub&gt;
+
+Text as `` ` `` fancy R code \`
+- Text as `fancy R code`
 ]
 .pull-right[
-You can write plain text,
+\&gt; Meaningful quote by some wise person
+&gt; Meaningful quote by some wise person
 
-in *italics* or in **bold**,
-
-and use S&lt;sup&gt;uperscript&lt;/sup&gt; or S&lt;sub&gt;ubscript&lt;/sub&gt;.
-
-You can format text as `fancy R code`,
-
-and even embed LaTeX equations:
-.pull-left[
-$$
-x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q} 
-$$
-]]
-
----
-
-## 3 R Markdown Documents (`.Rmd`)
-### 3.2 The Text Body
-
-```
-# You can use headers (H1)
-```
-# You can use headers (H1)
-```
-## You can use headers (H2)
-```
-## You can use headers (H2)
-```
-### You can use headers (H3)
-```
-### You can use headers (H3)
-
-???
-all the way down to level H6
-
----
-
-## 3 R Markdown Documents (`.Rmd`)
-### 3.2 The Text Body
-
-.pull-left[
-```
-&gt; You can highlight quotes,
-```
-&gt; You can highlight quotes,
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-```
-embed [Hyperlinks](url),
-```
-embed [Hyperlinks](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf),
+Hyperlink to the \[cheat sheet\]\(\&lt;url\&gt;\)
+- Hyperlink to the [cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown.pdf)
 ]
-.pull-right[
-```
-or include images: ![](url).
-``` 
-or include images:
+]
+.panel[.panel-name[Equations]
+Inline LaTeX equation: `$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$`
+
+`\(x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}\)`
+
+Centered LaTeX equation: ` `$$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$$` `
+
+`$$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$$`
+]
+.panel[.panel-name[Headlines]
+
+\# You can use headers (H1)
+
+### You can use headers (H1)
+
+\#\# You can use headers (H2)
+
+#### You can use headers (H2)
+
+\#\#\# You can use headers (H3)
+
+##### You can use headers (H3)
+
+
+]
+.panel[.panel-name[Images]
+External image: !\[\](\&lt;url\&gt;)
 
 ![](https://i.pinimg.com/originals/32/49/65/32496554a4f599228677bbf7919024bb.png).
+
 ]
-
-???
-comments
-
----
-
-## 3 R Markdown Documents (`.Rmd`)
-### 3.2 The Text Body
-
+.panel[.panel-name[Lists]
 .pull-left[
 ``` 
 - You can
 - create
   - an unordered
-  - list
-    - of items
-```
-
+  - list of items
+``` 
+- You can
+- create
+  - an unordered
+  - list of items
+]
+.pull-right[
 ``` 
 1. Or even
 2. better
 3. you create an ordered list
   1. which should
-  2. also look
-    1. familiar!
+  2. also look familiar!
 ```
+1. Or even
+2. better
+3. you create an ordered list
+  1. which should
+  2. also look familiar!
 ]
-.pull-right[
+]
+.panel[.panel-name[Footnotes]
 
-And finally, since we are in an academic context you might also want to use some footnotes.[^1]
-
-```
-[^1]: *Note: Find more information about the
-`rmarkdown` syntax by consulting the official
-[cheat sheet](url).*
-```
-
-&lt;br&gt;&lt;br&gt;
+`And finally, since we are in an academic context you might also want to use some footnotes. [^1]`
 
 And finally, since we are in an academic context you might also want to use some footnotes.&lt;sup&gt;1&lt;/sup&gt;
 
-.footnote[
-[1] Note: Find more information about the `rmarkdown` syntax by consulting the official [cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf).
-]]
+`[^1]: Note: Find more information about the `rmarkdown` syntax by consulting the official [cheat sheet](&lt;url&gt;).`
 
-???
-Point to the value of cheat sheets!
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.footnote[
+[1] Note: Find more information about the `rmarkdown` syntax by consulting the official [cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown.pdf).
+]
+]
+]
 
 ---
 
-## 3 R Markdown Documents (`.Rmd`)
-### 3.3 Code Chunks &amp; Output
+## 2 R Markdown Documents
+### 2.3 Code Chunks &amp; Output
 
-**Code Chunks:** Self-contained part of your `R` code for which, upon code evaluation, the output of your code is shown directly below the chunk instead of in your console or the *RStudio viewer* or the *plots pane*.
+Code chunks are self-contained parts of `R` code for which, upon code evaluation, the output of your code is shown directly below the chunk instead of in your console, the RStudio *Viewer* pane or the *Plots* pane.
 
-&lt;img src="./img/fibo.png" width="65%" height="65%" style="float:left; padding:10px" /&gt;
-&lt;br&gt;
-**Creating code chunks**:  
-Using the *insert* button in the RStudio interface ![](./img/insert.png), or via the keyboard shortcut:&lt;br&gt;*Ctrl + Alt + I*.
+.pull-left[
+````
+```{r fibo}
+fib &lt;- function(n) {
+  x &lt;- numeric(n)
+  x[1:2] &lt;- c(1, 1)
+  for(i in 3:n) {
+    x[i] &lt;- x[i-1] + x[i-2]
+  }
+  return(x)
+}
 
-*Note: In fact, code chunks even allow you to write and evaluate code in other languages, such as Python, SQL or C++.*
+fib(10)
+```
+````
+
+```
+&gt;  [1]  1  1  2  3  5  8 13 21 34 55
+```
+]
+.pull-right[
+- Create a new code chunks using the `Ctrl + Alt + I` keyboard shortcut (on Windows).
+- Code chunks even allow you to write and evaluate code in other languages, such as Python, SQL or C++, depending on the computational engine (e.g., `{r}`).
+- You can even insert code output dynamically into your text using inline code:  
+The 5. element of the Fib series is `` 5 ``  
+The 5. element of the Fib series is 5
+]
 
 ???
 The code is send from the chunk to your console where it is evaluated. The output is then send back to your code chunk where it is displayed below.
@@ -500,24 +282,11 @@ Note:
 
 ---
 
-## 3 R Markdown Documents (`.Rmd`)
-### 3.3 Live Demo
+## 2 R Markdown Documents
+### 2.3 Code Chunks &amp; Output
 
-.center[
-<div class="countdown" id="timer_5fa01293" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
-<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
-]
+Chunk options are (mostly) set as boolean (**`T`**`rue`/**`F`**`alse`) arguments in the chunk header `{r ...}` to further customize the behavior of your code chunks when they are rednered to the final output format.
 
-???
-show little green bar, talk about chunk names and chunk options, explain how code is sent to console and back, run inline expressions (cmd + enter)
-
----
-
-## 3 R Markdown Documents (`.Rmd`)
-### 3.3 Code Chunks &amp; Output
-
-**Chunk Options:** Can be set as boolean (**`T`**`rue`/**`F`**`alse`) arguments in the chunk header `{r ...}`.
 &lt;table style='width:100%;'&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -528,14 +297,14 @@ show little green bar, talk about chunk names and chunk options, explain how cod
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; include=F &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Code and Output does not appear in the final report (yet, code is still evaluated). &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Code and Output do not appear in the final report (yet, code is still evaluated). &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; eval=F &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; Output does not appear in the final report as the code is not evaluated. &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; result=F &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; results=&amp;quot;hide&amp;quot; &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; Output does not appear in the final report but the code is evaluated. &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -555,35 +324,36 @@ show little green bar, talk about chunk names and chunk options, explain how cod
 
 ---
 
-## 3 R Markdown Documents (`.Rmd`)
-### 3.4 Generating High-Quality Reports
+## 2 R Markdown Documents (`.Rmd`)
+### 2.4 Generating High-Quality Reports
 
-Render the `.Rmd` document into your desired output format by using `knitr::render()` command from the `knitr` package or hit the *Knit* button in your RStudio toolbar.
-
---
+Render the `.Rmd` document into your desired output format by using the `rmarkdown::render()` command or hit the *Knit* button in your RStudio toolbar.
 
 &lt;img src="https://d33wubrfki0l68.cloudfront.net/61d189fd9cdf955058415d3e1b28dd60e1bd7c9b/b739c/lesson-images/rmarkdownflow.png" width="50%" height="50%" style="display: block; margin: auto;" /&gt;
-&lt;br&gt;&lt;br&gt;
+
 **Workflow in the background:**
+1. `knitr` takes your `.Rmd`-file, executes the code chunks as well as inline code, and converts everything into plain markdown format (`.md`). If you have an error somewhere in your code, `knitr` will revolt!
+2. The `.md`-file is processed by the document converter `pandoc` and converted into the final output format (e.g., PDF, HTML, Word).
 
-1. `knitr` takes your `.Rmd`-file and converts it into a plain markdown file (`.md`).
-2. The `.md`-file is processed by `pandoc` and converted into the final output format (e.g., PDF, HTML, Word).
+.footnote[
+*Note: For an intuitive distinction between `markdown`, `rmarkdown`, `knitr` and `pandoc` see this [stackoverflow post](https://stackoverflow.com/a/40563480).*
+]
 
-*Note: `knitr` can only convert your final `.Rmd`-file if your code is free of errors as `knitr` tries to run your entire code (so-called batch execution) as part of the conversion workflow!*
+???
+pandoc is a software tool itself which is installed along with `rmarkdown`
 
 ---
 
-## 3 R Markdown Documents (`.Rmd`)
+## 2 R Markdown Documents (`.Rmd`)
 
 &lt;img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/rmarkdown_wizards.png" width="70%" height="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 layout: false
+class: center, middle
 
-class: middle, center, inverse
-
-# 4 Interactive Data Science
+# Live Demo&lt;br&gt;&lt;br&gt;👨‍💻 🕹 👩‍💻
 
 ---
 
@@ -594,12 +364,10 @@ layout: true
 
 ---
 
-## 4 Interactive Data Science 
-### 4.1 Introduction to Computational Notebooks
+## 3 Interactive Data Science 
+### 3.1 Introduction to Computational Notebooks
 
-**Computational notebooks** are virtual interfaces used for [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming). They combine features of word processors (e.g., MS Word) and the programming language kernel (e.g., the R shell which you find in the *RStudio console pane*).
-
---
+**Computational notebooks** are virtual interfaces used for [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming). They combine features of word processors (e.g., Microsoft Word) and the programming language kernel (e.g., the `R` shell which you find in the RStudio *Console* pane).
 
 .pull-left[
 **Features:**
@@ -626,352 +394,59 @@ Notebook Alternatives: Jupyter Notebook (language agnostic, but especially wides
 
 ---
 
-## 4 Interactive Data Science 
-### 4.1 Introduction to Computational Notebooks
+## 3 Interactive Data Science 
+### 3.1 Introduction to Computational Notebooks
 
 .center[This sounds pretty familiar after learning about R Markdown documents right? &lt;br&gt; So what is the R Notebook all about?]
-&lt;br&gt;&lt;br&gt;
+&lt;br&gt;
 &lt;img src="https://tenor.com/view/obama-wtf-why-president-wut-gif-12221156.gif" width="40%" height="40%" style="display: block; margin: auto;" /&gt;
-
-???
-comments
 
 ---
 
-## 4 Interactive Data Science 
-### 4.2 R Markdown Documents vs. R Notebooks
+## 3 Interactive Data Science 
+### 3.2 R Markdown Documents vs. R Notebooks
 
-Primarily, both formats are based on `.Rmd`-files:
-- An R Markdown document can be used as a computational notebook,
-- and an R Notebook can be rendered to other R Markdown document types (e.g., PDF, HTML, Word).
-
-A notebook (in the `R` universe) can be viewed as a special version of a Markdown document (it is a special way of executing an R Markdown document).
-
---
-
-**The use case is determined by your goal:** generating high-quality reports with R Markdown documents vs. doing data science / machine learning using R Notebooks.
+Primarily, both formats are based on `.Rmd`-files. A notebook (in the `R` universe) can be viewed as a special version of an R Markdown document (it has a special way of executing the code included in the document).
 
 .pull-left[
 **R Markdown documents:**
-- Execution of the whole code before rendering (batch execution)
-- Requires code to be free of errors
+```
+ ---
+ title: "R Markdown Document"
+ author: John Doe
+ date: "23 September, 2021"
+ output: html_document
+ ---
+```
+- All code is executed when hitting the `Knit` button (batch execution).
+- Hence, R Markdown documents require your code to be free of errors!
 ]
 .pull-right[
 **R Notebooks:**
-- Preview is simply a snapshot of your notebook (see `.nb.html`-file)
-- No `R` code is executed
+```
+ ---
+ title: "R Markdown Notebook"
+ author: John Doe
+ date: "23 September, 2021"
+ output: html_notebook
+ ---
+```
+- `Knit` is replaced by a `Preview` button.
+- A self-contained HTML-snapshot of your R Markdown document is created whenever you save it or hit `Preview` (see `.nb.html`-file).
+- No `R` code is executed - the preview is created as-is (including errors).
 ]
 
 ???
-First sentence: you will likely don't see any apparent differences between the two formats.
+The use case is determined by your goal:
+- generating high-quality reports with R Markdown documents
+- doing interactive data science / machine learning using R Notebooks
 
 ---
 
-## 4 Interactive Data Science 
-### 4.2 Live Demo
+layout: false
+class: center, middle
 
-.center[
-<div class="countdown" id="timer_5fa01158" style="top:0.5;right:0;bottom:0.5;left:0;margin:7.5%;padding:50px;font-size:5em;" data-warnwhen="0">
-<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
-]
-
-???
-preview of .nb.html which updates every time the file is saved (simple html snapshot of your notebook and not a final report, i.e. R does not check that the whole output is free of error)
-
-Highlight value of code chunks: split large code chunks or code chunks that generate more than one output into multiple chunks -&gt; improve readability, transparency and user experience (also for your future self); also more easy to debug
-
-!NOTE! This could never be rendered to PDF as an error occurs.
-  
-
----
-
-
-
-layout: true
-
----
-
-class: middle, center, inverse
-
-# 5 Project Environments
-
----
-
-## 5 `renv`: Project Environments
-### 5.1 Library Paths
-
-**Question:** Where does `R` generally store my installed packages respectively loads them from?
---
-&lt;br&gt;&lt;br&gt;
-**Answer:** Your user-specific *active library path*, i.e. from disk.
---
-
-
-```r
-.libPaths()
-```
-```
-&gt; [1] "C:/Users/.../Documents/R/R-4.0.2/library"
-```
---
-
-Packages are stored and loaded from the root installation folder (here for Windows operating systems). `R` crawls this path when loading (`library()`) or downloading (`install.packages()`) packages.
-
-```r
-find.package("splines")
-```
-```
-&gt; [1] "C:/Users/.../Documents/R/R-4.0.2/library/splines"
-```
-
----
-
-## 5 `renv`: Project Environments
-### 5.1 Library Paths
-
-By default, this path is accessed each time you run a new `R` session or create a new `.Rproj`. Yet, the required version of a given package may vary across projects (e.g., depending on the project's start date):
-
-- Project A requires `dplyr v1.0.0`,
-- Project B requires `dplyr v0.8.1`, and
-- Project C requires the dev version of `dplyr`.
-
-According to what you have learned, the three projects share the same mutual library path:
-```
-C:/Users/.../Documents/R/R-4.0.2/library
-```
-An upgrade or downgrade of the package version increases the chance that one of the projects does not work seamlessly any longer due to **dependency errors**.
-
----
-
-background-image: url(https://rstudio.github.io/renv/reference/figures/logo.svg)
-background-position: 95% 5%
-background-size: 7.5%
-layout: true
-
----
-
-## 5 `renv`: Project Environments
-### 5.2 Features of `renv`
-
-`R` package for initializing and managing local project environments, i.e. collections of R packages utilized only within a certain *.Rproj*.
-
-**Isolated projects:**  
-- One local library of R packages per `.Rproj`
-- Upgrade/downgrade packages without breaking other projects
-
-**Portable projects:**  
-- Save the state of your project library in a `lockfile`
-- Share the `lockfile` with others and ensure compatibility
-
-**Reproducible projects:**  
-- Use `renv::snapshot()` to save the state of your project library
-- Use `renv::restore()` to restore the state of your project library as specified in the lockfile
-
----
-
-## 5 `renv`: Project Environments
-### 5.3 The `renv` Workflow
-
-**Step 1:**  
-Set up `renv` by running `renv::init()` to initialize your local environment with a private library of `R` packages specific to your project.
-
-**Step 2:**  
-Write some code, install, uninstall and update some packages.
-
-**Step 3:**  
-Use `renv::snapshot()` to writte the current state of your project library to the so-called *lockfile*.
-
-**Step 4:**  
-Write some code, install, uninstall and update some packages.
-
-**Step 5:**  
-Use `renv::restore()` to revert to the library state encoded in your *lockfile* in case you run into problems while working with updated packages.
-
----
-
-## 5 `renv`: Project Environments
-### 5.3 The `renv` Workflow: `renv::init()`
-
-```
-&gt; install.packages("renv")
-&gt; renv::init()
-```
-
-Under the hood, `renv::init()` establishes the infrastructure to run your project-specific library. More specifically, the following files are written to and used by your `renv`-enabled projects:
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; File &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Usage &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; .Rprofile &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Used to activate renv whenever a new R session is launched within the project &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; renv.lock &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; The lockfile, defining the state of your project library &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; renv/activate.R &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; The activation script run by the project .Rprofile &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; renv/library &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Your local project library &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-???
-this is not super important to know but you might wander what all the new files in your project folder are meant for
-
----
-
-## 5 `renv`: Project Environments
-### 5.3 The `renv` Workflow: `renv.lock`
-
-The **lockfile** stores all information necessary to re-install the required packages, e.g., when sharing the project with a collaborator, archiving a project or putting code into productive use (*deployment*).
-
-Packages can be downloaded from: `CRAN`, `Bioconductor`, `GitHub`, `Gitlab`, `Bitbucket`.
-
---
-
-**Exemplary lockfile entry in JSON format:**
-```
-"renv": {
-  "Package": "renv",
-  "Version": "0.11.0",
-  "Source": "Repository",
-  "Repository": "CRAN",
-  "Hash": "1c3ef87cbb81c23ac96797781ec7aecc"
-}
-```
-
-???
-JSON: list of key-value pairs
-you cultivate one lock-file per project. as soon as you feel you need to require another lockfile (e.g., due to differing package versions) you should rather start a new R project.
-
----
-
-## 5 `renv`: Project Environments
-### 5.3 The `renv` Workflow: `renv/library`
-
-`renv` links your project to a **global package cache** where all your downloaded packages are stored by `renv`. You can think of it as a repository that contains all package versions ever installed on your machine.
-
-.pull-left[
-&lt;img src="https://kevinushey-2020-rstudio-conf.netlify.app/img/package-cache.svg" width="100%" height="100%" /&gt;
-]
-.pull-right[
-This approach avoids redundancies, if the same package version is used by multiple projects.
-
-In this case, the installation of the respective package is stored in the global cache with `renv` simply creating a link to this cache within your project. This is what your local **project library** under the path `renv/library` is all about.
-]
-.pull-right[
-.footnote[
-Picture by [Kevin Ushey](https://kevinushey-2020-rstudio-conf.netlify.app/slides.html#1).
-]]
-
-???
-- this approach saves space on disk and makes installing and restoring packages much faster
-- renv only copies packages if the linking approach fails
-
----
-
-## 5 `renv`: Project Environments
-### 5.3 The `renv` Workflow: `renv/library`
-
-Finally, if you now check your *active library path*, you can observe a new project-specific path (as well as an additional system library path which you need not consider further at this point).
-
-```r
-.libPaths()
-```
-```
-&gt; [1] "C:/Users/.../01_structuring_data_projects/renv/library/R-4.0/x86_64-w64-mingw32"
-&gt; [2] "C:/Users/.../AppData/Local/Temp/Rtmp0aVyVr/renv-system-library"
-```
-
----
-
-## 5 `renv`: Project Environments
-### 5.3 The `renv` Workflow: `renv::snapshot()`
-
-After having successfully set up our project-specific library, let's consider the two other main features of the `renv` package: `renv::snapshot()` and `renv::restore()`.
-
-**`renv::snapshot()`** updates the lockfile by writing the current state of the project library to the lockfile.
-
-```r
-renv::snapshot()
-```
-
---
-
-```
-&gt; The following package(s) will be updated in the lockfile:
-&gt; 
-&gt; # CRAN ===============================
-&gt; - glue        [1.4.0 -&gt; 1.4.1]
-&gt; - jsonlite    [1.6.0 -&gt; 1.7.0]
-&gt; - rmarkdown   [* -&gt; 2.3]
-&gt; 
-&gt; Do you want to proceed? [y/N]: y
-&gt;  * Lockfile written to 'C:/Users/.../01_structuring_data_projects/renv.lock'.
-```
-
----
-
-## 5 `renv`: Project Environments
-### 5.3 The `renv` Workflow: `renv::restore()`
-
-After having successfully set up our project-specific library, let's consider the two other main features of the `renv` package: `renv::snapshot()` and `renv::restore()`.
-
-**renv::restore()** updates the project library by restoring the state of the project library as specified in the lockfile.
-
-```r
-renv::restore()
-```
---
-```
-&gt; The following package(s) will be updated:
-&gt; 
-&gt; # CRAN ===============================
-&gt; - rmarkdown   [* -&gt; 2.3]
-&gt; - stringr     [* -&gt; 1.4.0]
-&gt; 
-&gt; Do you want to proceed? [y/N]: y
-&gt; Installing stringr [1.4.0] ... OK (copied cache)
-&gt; Installing rmarkdown [2.3] ... OK (copied cache)
-```
-
----
-
-## 5 `renv`: Project Environments
-### 5.4 Additional Remarks
-
-A project is always bound to a particular version of `renv`. Updating the current version of the `renv` package should be done using the `renv::upgrade()` command.
-
-When setting up `renv` for an existing project, it crawls all project scripts and searches for packages that are mentioned in your code via `renv::dependencies()`. For this presentation, I relied, among others, on the following packages (note that packages are only identified if mentioned in the code by namespace):
-
-```r
-head(renv::dependencies(), 5)
-```
-```
-&gt; Finding R package dependencies ... Done!
-
-&gt;                                          Source          Package
-&gt; 1 C:/Users/s_scho53/.../01_rstudio_projects.Rmd        rmarkdown
-&gt; 2 C:/Users/s_scho53/.../01_rstudio_projects.Rmd            knitr
-&gt; 3 C:/Users/s_scho53/.../01_rstudio_projects.Rmd            knitr
-&gt; 4 C:/Users/s_scho53/.../01_rstudio_projects.Rmd            knitr
-&gt; 5      C:/Users/s_scho53/.../02_r_notebooks.Rmd        rmarkdown
-```
-
-???
-Here, only the top 5 entries. `knitr` is three times, according to how often I use the package in my code (here three times for including pictures and gifs in the slides).
+# Live Demo&lt;br&gt;&lt;br&gt;👨‍💻 🕹 👩‍💻
 
 ---
 
@@ -979,34 +454,18 @@ layout: true
 
 ---
 
-##Additional Resources
+## Additional Resources
 
-**RStudio Support (2020):** Using Projects. URL: https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects.
+**RStudio (2021):** Introduction to `Rmarkdown`. URL: https://rmarkdown.rstudio.com/lesson-1.html.
 
-**Wickham, H./Grolemund, G. (2017):** R for Data Science: Visualize, Model, Transform, Tidy, and Import Data. URL:
-https://r4ds.had.co.nz/workflow-projects.html, chapter 8 (Workflow: projects).
+**Xie, Y./Allaire, J.J./Grolemund, G. (2021):** R Markdown: The Definitive Guide. URL: https://bookdown.org/yihui/rmarkdown/.
 
-___
-
-**RStudio (2020):** Introduction to `Rmarkdown`. URL: https://rmarkdown.rstudio.com/lesson-1.html.
-
-**Xie, Y./Allaire, J.J./Grolemund, G. (2020):** R Markdown: The Definitive Guide. URL: https://bookdown.org/yihui/rmarkdown/, chapter 2 (Basics) and 3 (Documents).
-
-___
-
-**Ushey, K. (2020):** `renv`: Project Environments for R. URL: https://kevinushey-2020-rstudio-conf.netlify.app/slides.html#1.
-
-**Ushey, K. (2020):** Introduction to `renv`. URL: https://rstudio.github.io/renv/articles/renv.html.
-
-???
-convert online presentation to pdf:
-docker run --rm -t -v %cd%/desktop/l09_desktop/workshops/01_structuring_data_projects/slides:/slides astefanutti/decktape https://simonschoe.github.io/structuring-data-projects/#1 index.pdf
+**Xie, Y./Dervieux, C./Riederer, E. (2021):** R Markdown Cookbook. URL: https://bookdown.org/yihui/rmarkdown-cookbook/.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
-"highlightLines": true,
 "countIncrementalSlides": false,
 "ratio": "16:9"
 });
@@ -1074,24 +533,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 slideshow._releaseMath = function(el) {

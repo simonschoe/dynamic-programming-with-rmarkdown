@@ -1,0 +1,57 @@
+---
+title: "R Notebook Demo"
+author: Simon Schölzel
+date: "`r format(Sys.time(), '%d %B, %Y')`"     
+output: html_notebook
+---
+
+# Markdown Examples
+
+<iframe src="https://player.vimeo.com/video/178485416?color=428bca" width="480" height="300" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+
+</iframe>
+
+## The Fibnoacci Series
+
+![](http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQ-i8vSXstr4BR4br6yUDM6o4esu6TFZdLVsqjfBWIT8vaXdoCSDi3bw93Iir4l)
+
+**Wikipedia extract:** Fibonacci numbers are named after Italian mathematician *Leonardo of Pisa*, later known as Fibonacci. In his 1202 book Liber Abaci, Fibonacci introduced the sequence to Western European mathematics,[5] although the sequence had been described earlier in Indian mathematics, as early as 200 BC in work by Pingala on enumerating possible patterns of Sanskrit poetry formed from syllables of two lengths. [Source](https://en.wikipedia.org/wiki/Fibonacci_number)
+
+```{r fibonacci, warning=F}
+fib <- function(n) {
+  x <-  numeric(n)
+  x[1:2] <- c(1,1)
+  for(i in 3:n) {
+    x[i] = x[i-1] + x[i-2]
+  }
+  return(x)
+}
+
+Sys.sleep(5)
+
+fib(10)
+```
+
+We can even run in-line, so-called inline expressions: `r fib(15)`.
+
+Return the first 100 elements of the series:
+
+```{r, echo=F}
+fib(100)
+```
+
+## The famous `mtcars` dataset
+
+The `mtcars` data was extracted from the 1974 *Motor Trend* US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973--74 models).
+
+## Solving quadratic equations
+
+Take a quadratic equation[^1] of the form:
+
+[^1]: See [Wikipedia](https://en.wikipedia.org/wiki/Quadratic_equation)
+
+$$ x^2 + p * x + q = 0 $$ where $p$ and $q$ are the function coefficients.
+
+This type of equation can be solved using the *p-q-formula*:
+
+$$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$$

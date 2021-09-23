@@ -11,5 +11,9 @@
 # RStudio files
 .Rproj.user/
 
-# Slides
+# Slides & archive
 slides/
+archive/
+
+# Notes
+live-tutorial-notes.txt

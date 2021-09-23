@@ -1,152 +1,0 @@
-"0","pacman::p_load_gh(""hadley/emo"", ""gadenbuie/countdown"")
-"
-"1","jsonlite (NA -> 1.7.1) [CRAN]"
-"1","
-"
-"1","testthat (NA -> 2.3.2) [CRAN]"
-"1","
-"
-"2","versuche URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/jsonlite_1.7.1.zip'
-"
-"2","Content type 'application/zip'"
-"2"," length 1172264 bytes (1.1 MB)
-"
-"2","downloaded 1.1 MB
-
-"
-"2","versuche URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/testthat_2.3.2.zip'
-"
-"2","Content type 'application/zip'"
-"2"," length 1975102 bytes (1.9 MB)
-"
-"2","downloaded 1.9 MB
-
-"
-"1","package ‘jsonlite’ successfully unpacked and MD5 sums checked
-"
-"1","package ‘testthat’ successfully unpacked and MD5 sums checked
-"
-"1","
-"
-"1",""
-"1","The downloaded binary packages are in
-	C:\Users\s_scho53\AppData\Local\Temp\RtmpsVxoVM\downloaded_packages"
-"1",""
-"1","
-"
-"1","  "
-"1","  "
-"1",""
-"1",""
-"1","  "
-"1","[32m√[39m  [90mchecking for file 'C:\Users\s_scho53\AppData\Local\Temp\RtmpsVxoVM\remotes395056d1687\gadenbuie-countdown-a544fa4/DESCRIPTION'[39m[36m[39m"
-"1",""
-"1","
-"
-"1",""
-"1",""
-"1",""
-"1","  "
-"1","  "
-"1",""
-"1",""
-"1","  "
-"1","[90m-[39m[90m  [39m[90mpreparing 'countdown':[39m[36m[39m"
-"1",""
-"1","
-"
-"1","   checking DESCRIPTION meta-information ..."
-"1",""
-"1",""
-"1","  "
-"1","[32m√[39m  [90mchecking DESCRIPTION meta-information[39m[36m[39m"
-"1",""
-"1","
-"
-"1",""
-"1",""
-"1",""
-"1","  "
-"1","  "
-"1",""
-"1",""
-"1","  "
-"1","[90m-[39m[90m  [39m[90mchecking for LF line-endings in source and make files and shell scripts[39m[36m[39m"
-"1",""
-"1","
-"
-"1","[90m-[39m[90m  [39m[90mchecking for empty or unneeded directories[39m[36m[39m"
-"1",""
-"1","
-"
-"1",""
-"1",""
-"1",""
-"1","  "
-"1","   Removed empty directory 'countdown/inst/countdown-fullscreen/www/tmp'"
-"1",""
-"1","
-"
-"1","[90m-[39m[90m  [39m[90mbuilding 'countdown_0.3.5.tar.gz'[39m[36m[39m"
-"1",""
-"1","
-"
-"1",""
-"1",""
-"1",""
-"1","  "
-"1","   "
-"1",""
-"1","
-"
-"1",""
-"1",""
-"1",""
-"1","* installing *source* package 'countdown' ...
-"
-"1","** using staged installation
-"
-"1","** R
-"
-"1","** inst
-"
-"1","** byte-compile and prepare package for lazy loading
-"
-"1","** help
-"
-"1","*** installing help indices
-"
-"1","  converting help for package 'countdown'
-"
-"1","    finding HTML links ... fertig
-"
-"1","    choose_dark_or_light                    html  
-"
-"1","    countdown                               html  
-"
-"1","Rd warning: C:/Users/s_scho53/AppData/Local/Temp/RtmpuCrh2J/R.INSTALL28a86a479f7/countdown/man/countdown.Rd:180: file link 'infinite_moon_reader' in package 'xaringan' does not exist and so has been treated as a topic
-"
-"1","    countdown_app                           html  
-"
-"1","    lighten_darken_color                    html  
-"
-"1","*** copying figures
-"
-"1","** building package indices
-"
-"1","** testing if installed package can be loaded from temporary location
-"
-"1","*** arch - i386
-"
-"1","*** arch - x64
-"
-"1","** testing if installed package can be loaded from final location
-"
-"1","*** arch - i386
-"
-"1","*** arch - x64
-"
-"1","** testing if installed package keeps a record of temporary installation path
-"
-"1","* DONE (countdown)
-"

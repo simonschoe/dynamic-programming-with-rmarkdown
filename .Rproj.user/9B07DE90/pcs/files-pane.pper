@@ -2,12 +2,12 @@
     "sortOrder": [
         {
             "columnIndex": 1,
-            "ascending": true
+            "ascending": false
         },
         {
             "columnIndex": 2,
             "ascending": true
         }
     ],
-    "path": "C:/Users/s_scho53/Desktop/L09_Desktop/workshops/01_structuring_data_projects"
+    "path": "C:/Users/s_scho53/Desktop/L09_Desktop/workshops/introduction-to-rmarkdown"
 }
