@@ -80,10 +80,10 @@ ___
 **2 R Markdown Documents**  
 > 2.1 The `YAML` Header  
 2.2 The Text Body  
-2.3 Code Chunks & Output 
+2.3 Code Chunks & Output  
 2.4 Generating High-Quality Reports
   
-**3 Interactive Data Science**  
+**3 Interactive Data Science in `R`**  
 > 3.1 Introduction to Computational Notebooks  
 3.2 R Markdown Documents vs. R Notebooks
 
@@ -92,14 +92,8 @@ ___
 ## 1 The Story So Far: `R` Scripts
 
 ```{r, echo=F, out.width='70%', fig.align='center'}
-knitr::include_graphics("./img/r-script.PNG")
+knitr::include_graphics("./img/r-script.png")
 ```
-
---
-
-.center[
-With R scripts (`.R`), a report of your analysis must be drawn separately from your code (e.g., in MS Word) while collecting all plots and results you have previously written to file (e.g., `.PNG` or `.csv`). More importantly, each change of the code requires a whole review of the report!
-]
 
 ???
 - file extension `.R`
@@ -112,10 +106,16 @@ With R scripts (`.R`), a report of your analysis must be drawn separately from y
 - not really a good approach because you are going back and forth between console and script the whole time
 - and what does this workflow look like if you have to write a report based on your code (e.g., your thesis)?
 
+--
+
+.center[
+When using `R` scripts (`.R`), a report of your analysis, including plots as well as results, is usually separated from your code (e.g., contained in a Microsoft Word document). As a result, each change of your code base requires a whole review of the written report!
+]
+
 ---
 
 background-image: url(https://camo.githubusercontent.com/de0519dd8e4ebc982eb0ddfaa9c6cd0924149e6c/68747470733a2f2f626f6f6b646f776e2e6f72672f79696875692f726d61726b646f776e2f696d616765732f6865782d726d61726b646f776e2e706e67)
-background-position: 95% 5%
+background-position: 97.5% 2.5%
 background-size: 7.5%
 layout: true
 
@@ -129,17 +129,16 @@ layout: true
 - Intertwine `R` code and plain text in one document
 - Generate high-quality reports from `.Rmd`-files
 
+<br>
+
 **Document elements:**
-- Header
-- Text body
-- Code & output
-]
-.pull-right[
-<iframe src="https://player.vimeo.com/video/178485416?color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+- The `YAML` Header
+- The text body
+- Code chunks & output
 ]
 
-.footnote[
-*Note: The different document elements apply to R Markdown Documents (`.Rmd`-files) and do not appear in common R Scripts (`.R`-files)*.
+.pull-right[
+<iframe src="https://player.vimeo.com/video/178485416?color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 ]
 
 ---
@@ -147,7 +146,7 @@ layout: true
 ## 2 R Markdown Documents
 ### 2.1 The `YAML` Header
 
-The **`YAML` header** appears at the top of each `.Rmd` document. It contains a bunch of metadata as well as formatting options for your final report. The syntax for the header is based on [YAML](https://en.wikipedia.org/wiki/YAML).
+The `YAML` header appears at the top of each `.Rmd` document. It contains a bunch of metadata as well as formatting options for your final report. The syntax for the header is based on [YAML](https://en.wikipedia.org/wiki/YAML).
 
 ```
  ---
@@ -162,11 +161,7 @@ The **`YAML` header** appears at the top of each `.Rmd` document. It contains a 
  ---
 ```
 
-Importantly, `.Rmd` can be converted to a plethora of different file formats, e.g., HTML, PDF, Word, even Powerpoint slides, by specifying the `output` argument.
-
-.footnote[
-*Note: For the various options of modifying the header of an HTML document see [Xie/Allaire/Grolemund (2021)](https://bookdown.org/yihui/rmarkdown/html-document.html).*
-]
+Importantly, `.Rmd` can be converted to a plethora of different file formats, e.g., HTML, PDF, Word, even Powerpoint slides, by specifying the `output` argument (for more details see [Xie/Allaire/Grolemund (2021)](https://bookdown.org/yihui/rmarkdown/html-document.html)).
 
 ???
 YAML: "YAML Ain't Markup Language"
@@ -188,7 +183,7 @@ Text in \*italics\* or in \*\*bold\*\*
 Text in S^uperscript^ or S~ubscript~
 - Text in S<sup>uperscript</sup> or S<sub>ubscript</sub>
 
-Text as `` ` `` fancy R code \`
+Text as `` ` ``fancy R code`` ` ``
 - Text as `fancy R code`
 ]
 .pull-right[
@@ -200,11 +195,13 @@ Hyperlink to the \[cheat sheet\]\(\<url\>\)
 ]
 ]
 .panel[.panel-name[Equations]
-Inline LaTeX equation: `$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$`
+*Inline LaTeX equation:* Text before `$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$` Text after
 
-$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$
+Text before $x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$ Text after
 
-Centered LaTeX equation: ` $$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$$ `
+<br>
+
+*Centered LaTeX equation:* ` $$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$$ `
 
 $$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$$
 ]
@@ -212,22 +209,23 @@ $$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$$
 
 \# You can use headers (H1)
 
-### You can use headers (H1)
+#### You can use headers (H1)
 
 \#\# You can use headers (H2)
 
-#### You can use headers (H2)
+##### You can use headers (H2)
 
 \#\#\# You can use headers (H3)
 
-##### You can use headers (H3)
+###### You can use headers (H3)
 
 
 ]
 .panel[.panel-name[Images]
 External image: !\[\](\<url\>)
 
-![](https://i.pinimg.com/originals/32/49/65/32496554a4f599228677bbf7919024bb.png).
+External image:
+![](https://i.pinimg.com/originals/32/49/65/32496554a4f599228677bbf7919024bb.png)
 
 ]
 .panel[.panel-name[Lists]
@@ -260,13 +258,15 @@ External image: !\[\](\<url\>)
 ]
 .panel[.panel-name[Footnotes]
 
-`And finally, since we are in an academic context you might also want to use some footnotes. [^1]`
+And finally, since we are in an academic context you might also want to use some footnotes. [^1]
 
 And finally, since we are in an academic context you might also want to use some footnotes.<sup>1</sup>
 
-`[^1]: Note: Find more information about the `rmarkdown` syntax by consulting the official [cheat sheet](<url>).`
+<br>
 
-<br><br><br><br><br><br>
+[^1]: Note: Find more information about the `rmarkdown` syntax by consulting the official [cheat sheet](<url>).
+
+<br><br><br><br>
 
 .footnote[
 [1] Note: Find more information about the `rmarkdown` syntax by consulting the official [cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown.pdf).
@@ -282,6 +282,7 @@ And finally, since we are in an academic context you might also want to use some
 Code chunks are self-contained parts of `R` code for which, upon code evaluation, the output of your code is shown directly below the chunk instead of in your console, the RStudio *Viewer* pane or the *Plots* pane.
 
 .pull-left[
+
 ````
 ```{r fibo}`r ''`
 fib <- function(n) {
@@ -296,6 +297,7 @@ fib <- function(n) {
 fib(10)
 ```
 ````
+
 ```{r, echo=F}
 fib <- function(n) {
   x <- numeric(n)
@@ -308,13 +310,14 @@ fib <- function(n) {
 
 fib(10)
 ```
+
 ]
 .pull-right[
-- Create a new code chunks using the `Ctrl + Alt + I` keyboard shortcut (on Windows).
-- Code chunks even allow you to write and evaluate code in other languages, such as Python, SQL or C++, depending on the computational engine (e.g., `{r}`).
+- Create a new code chunks using the `Ctrl + Alt + I` keyboard shortcut (on Windows).<br><br>
+- Code chunks even allow you to write and evaluate code in other languages, such as Python, SQL or C++, depending on the computational engine (e.g., `{r}`).<br><br>
 - You can even insert code output dynamically into your text using inline code:  
-The 5. element of the Fib series is `` `r fib(5)[5]` ``  
-The 5. element of the Fib series is `r fib(5)[5]`
+The 5. element of the series is `` ` `` r fib(5)[5] `` ` ``  
+The 5. element of the series is `r fib(5)[5]`
 ]
 
 ???
@@ -352,7 +355,7 @@ knitr::kable(df, format = "html", table.attr = "style='width:100%;'")
 ## 2 R Markdown Documents (`.Rmd`)
 ### 2.4 Generating High-Quality Reports
 
-Render the `.Rmd` document into your desired output format by using the `rmarkdown::render()` command or hit the *Knit* button in your RStudio toolbar.
+Render the `.Rmd` document into your desired output format by using the `rmarkdown::render()` command or click the *Knit* button in your RStudio toolbar.
 
 ```{r, echo=F, out.height='50%', out.width='50%', fig.align='center'}
 knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/61d189fd9cdf955058415d3e1b28dd60e1bd7c9b/b739c/lesson-images/rmarkdownflow.png")
@@ -393,10 +396,10 @@ layout: true
 
 ---
 
-## 3 Interactive Data Science 
+## 3 Interactive Data Science in `R`
 ### 3.1 Introduction to Computational Notebooks
 
-**Computational notebooks** are virtual interfaces used for [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming). They combine features of word processors (e.g., Microsoft Word) and the programming language kernel (e.g., the `R` shell which you find in the RStudio *Console* pane).
+Computational notebooks are virtual interfaces used for [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming). They combine features of word processors (e.g., Microsoft Word) and the programming language kernel (e.g., the `R` shell which you find in the RStudio *Console* pane).
 
 .pull-left[
 **Features:**
@@ -419,6 +422,8 @@ knitr::include_graphics("https://www.r-project.org/logo/Rlogo.svg")
 ]]
 
 ???
+As emphasized before: knitting only works, if your code is free of errors
+
 Literate Programming:
 - Writing human-readable computer programs
 - Boils down to having the source code as well as natural language documentations in one file
@@ -427,10 +432,10 @@ Notebook Alternatives: Jupyter Notebook (language agnostic, but especially wides
 
 ---
 
-## 3 Interactive Data Science 
+## 3 Interactive Data Science in `R`
 ### 3.1 Introduction to Computational Notebooks
 
-.center[This sounds pretty familiar after learning about R Markdown documents right? <br> So what is the R Notebook all about?]
+.center[This sounds pretty familiar after learning about R Markdown documents right? <br> So what is an R Notebook all about?]
 <br>
 ```{r, echo=F, out.height='40%', out.width='40%', fig.align='center'}
 knitr::include_graphics("https://tenor.com/view/obama-wtf-why-president-wut-gif-12221156.gif")
@@ -438,7 +443,7 @@ knitr::include_graphics("https://tenor.com/view/obama-wtf-why-president-wut-gif-
 
 ---
 
-## 3 Interactive Data Science 
+## 3 Interactive Data Science in `R`
 ### 3.2 R Markdown Documents vs. R Notebooks
 
 Primarily, both formats are based on `.Rmd`-files. A notebook (in the `R` universe) can be viewed as a special version of an R Markdown document (it has a special way of executing the code included in the document).
@@ -453,7 +458,7 @@ Primarily, both formats are based on `.Rmd`-files. A notebook (in the `R` univer
  output: html_document
  ---
 ```
-- All code is executed when hitting the `Knit` button (batch execution).
+- All code is executed when clicking the `Knit` button (batch execution).
 - Hence, R Markdown documents require your code to be free of errors!
 ]
 .pull-right[
@@ -467,7 +472,7 @@ Primarily, both formats are based on `.Rmd`-files. A notebook (in the `R` univer
  ---
 ```
 - `Knit` is replaced by a `Preview` button.
-- A self-contained HTML-snapshot of your R Markdown document is created whenever you save it or hit `Preview` (see `.nb.html`-file).
+- A self-contained HTML-snapshot of your R Markdown document is created whenever you save it or click `Preview` (see `.nb.html`-file).
 - No `R` code is executed - the preview is created as-is (including errors).
 ]
 
