@@ -190,7 +190,7 @@ Text as `` ` ``fancy R code`` ` ``
 \> Meaningful quote by some wise person
 > Meaningful quote by some wise person
 
-Hyperlink to the \[cheat sheet\]\(\<url\>\)
+Hyperlink to the \[cheat sheet\]( < URL > )
 - Hyperlink to the [cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown.pdf)
 ]
 ]
@@ -222,11 +222,13 @@ $$x_{1/2} = -\frac{p}{2}\pm \sqrt{(\frac{p}{2})^2-q}$$
 
 ]
 .panel[.panel-name[Images]
-External image: !\[\](\<url\>)
-
+.pull-left[
+External image: !\[\]( < URL > )
+]
+.pull-right[
 External image:
 ![](https://i.pinimg.com/originals/32/49/65/32496554a4f599228677bbf7919024bb.png)
-
+]
 ]
 .panel[.panel-name[Lists]
 .pull-left[
