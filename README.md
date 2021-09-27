@@ -12,7 +12,7 @@
 **2 R Markdown Documents**  
 > 2.1 The `YAML` Header  
 2.2 The Text Body  
-2.3 Code Chunks & Output 
+2.3 Code Chunks & Output  
 2.4 Generating High-Quality Reports
   
 **3 Interactive Data Science in `R`**  
