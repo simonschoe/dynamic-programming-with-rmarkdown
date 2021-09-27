@@ -9,7 +9,7 @@
 .Ruserdata
 
 # RStudio files
-.Rproj.user/
+.Rproj.user
 
 # Slides & archive
 slides/

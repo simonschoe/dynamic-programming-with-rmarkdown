@@ -92,7 +92,7 @@ ___
 ## 1 The Story So Far: `R` Scripts
 
 ```{r, echo=F, out.width='70%', fig.align='center'}
-knitr::include_graphics("./img/r-script.png")
+knitr::include_graphics("./img/r-script.PNG")
 ```
 
 ???
